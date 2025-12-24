@@ -19,13 +19,16 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
+          ./hosts/nixos/configuration.nix
           nixvim.nixosModules.nixvim
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.hoang = import ./home.nix;
+            home-manager.users.hoang = import [
+              ./home/hoang/home.nix
+              nixvim.homeManagerModules.nixvim
+            ];
           }
         ];
       };

@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ./waybar.nix
+    ./programs/waybar.nix
+    ./programs/nixvim.nix
   ];
 
   home.username = "hoang";
