@@ -18,6 +18,9 @@
     networkmanagerapplet
     gsimplecal
     wofi # <--- ADDED: Modern app launcher
+    wf-recorder # <--- ADDED: Screen recorder
+    libnotify # <--- ADDED: For notify-send
+    wev # <--- ADDED: To debug key codes
   ];
 
   programs.kitty = {
@@ -100,8 +103,28 @@
       modifier = "Mod4";
       terminal = "kitty";
       menu = "wofi --show drun"; # <--- CHANGED: Use wofi instead of dmenu
-      bars = [ { command = "${pkgs.waybar}/bin/waybar"; } ];
+      bars = []; # <--- CHANGED: Waybar is started as a systemd service
       
+      keybindings = let
+        modifier = "Mod4";
+      in lib.mkOptionDefault {
+        # Screenshot (Full Screen) -> Clipboard
+        "Print" = "exec grim - | wl-copy && notify-send 'Screenshot' 'Full screen copied to clipboard'";
+        
+        # Screenshot (Area) -> Clipboard
+        # Supports: Shift+Print, specialized hardware keys, and the Acer 'Super+Shift+S' hardware button
+        "Shift+Print" = "exec grim -g \"$(slurp)\" - | wl-copy && notify-send 'Screenshot' 'Area copied to clipboard'";
+        "XF86SelectiveScreenshot" = "exec grim -g \"$(slurp)\" - | wl-copy && notify-send 'Screenshot' 'Area copied to clipboard'";
+        "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy && notify-send 'Screenshot' 'Area copied to clipboard'";
+
+        # Screen Recording (Area) -> ~/Videos. (Alt + Print to start)
+        "Mod1+Print" = "exec wf-recorder -g \"$(slurp)\" -f $HOME/Videos/recording_$(date +'%Y%m%d_%H%M%S').mp4 && notify-send 'Recording' 'Started recording area'";
+        
+        # Stop Recording (Control + Print to stop)
+        "Control+Print" = "exec pkill wf-recorder && notify-send 'Recording' 'Stopped recording'";
+        "${modifier}+Shift+r" = "exec pkill wf-recorder && notify-send 'Recording' 'Stopped recording'";
+      };
+
       startup = [
         { command = "nm-applet --indicator"; }
       ];
