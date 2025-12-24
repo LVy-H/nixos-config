@@ -29,11 +29,15 @@
     antigravity-fhs
     libnotify       # Notifications
     wev             # Input debugging
+    btop            # System monitor
     
     # Clipboard & Recording
     cliphist        # Clipboard manager
     wl-clipboard    # Clipboard utils
     wf-recorder     # Screen recorder
+    
+    # Fonts
+    font-awesome    # Icon font for Waybar
   ];
 
   # Services
