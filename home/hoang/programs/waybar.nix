@@ -37,6 +37,7 @@
         };
         
         "battery" = {
+          interval = 30;
           states = { warning = 30; critical = 15; };
           format = "{capacity}% {icon}";
           format-charging = "{capacity}% ";
@@ -46,6 +47,7 @@
         };
         
         "network" = {
+          interval = 3;
           format-wifi = "";
           format-ethernet = "";
           tooltip-format = "{ifname} via {gwaddr}\nDownload: {bandwidthDownBits}\nUpload: {bandwidthUpBits}";
@@ -81,6 +83,7 @@
         };
         
         "cpu" = {
+          interval = 2;
           format = "{usage}% ";
           tooltip = true;
           tooltip-format = "Usage: {usage}%\nFreq: {avg_frequency}GHz";
@@ -88,6 +91,7 @@
         };
         
         "memory" = {
+          interval = 5;
           format = "{}% ";
           tooltip-format = "RAM: {used:0.1f}GiB / {total:0.1f}GiB ({percentage}%)\nSwap: {swapUsed:0.1f}GiB / {swapTotal:0.1f}GiB";
           on-click = "kitty -e btop";
