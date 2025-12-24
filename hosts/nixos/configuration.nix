@@ -38,6 +38,21 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Audio Config (PipeWire)
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+
   virtualisation.podman.enable = true;
 
   virtualisation.docker.rootless = {

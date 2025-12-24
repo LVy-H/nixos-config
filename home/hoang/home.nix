@@ -10,7 +10,9 @@
     ./programs/lock.nix
     ./programs/theme.nix
     ./programs/shell.nix
-    # ./programs/nixvim.nix
+    ./programs/git.nix
+    ./programs/mako.nix
+    ./programs/nixvim.nix
   ];
 
   home = {

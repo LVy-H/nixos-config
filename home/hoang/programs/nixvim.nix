@@ -1,118 +1,103 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+
+{
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
 
-    colorschemes.catppuccin.enable = true;
-
-    opts = {
-      number = true;
-      relativenumber = true;
-      shiftwidth = 2;
-      tabstop = 2;
-      expandtab = true;
-      clipboard = "unnamedplus";
+    # Colorscheme
+    colorschemes.catppuccin = {
+      enable = true;
+      settings.flavour = "macchiato";
     };
 
+    # Keymaps (Space as leader)
     globals.mapleader = " ";
-
     keymaps = [
-      {
-        key = "<leader>e";
-        action = "<cmd>Neotree toggle<CR>";
-        options.desc = "Toggle Explorer";
-      }
-      {
-        key = "<leader>ff";
-        action = "<cmd>Telescope find_files<CR>";
-        options.desc = "Find files";
-      }
-      {
-        key = "<leader>fg";
-        action = "<cmd>Telescope live_grep<CR>";
-        options.desc = "Live grep";
-      }
+      { mode = "n"; key = "<leader>e"; action = "<cmd>Neotree toggle<CR>"; options.desc = "Toggle Explorer"; }
+      { mode = "n"; key = "<leader>ff"; action = "<cmd>Telescope find_files<CR>"; options.desc = "Find Files"; }
+      { mode = "n"; key = "<leader>fg"; action = "<cmd>Telescope live_grep<CR>"; options.desc = "Grep Files"; }
+      { mode = "n"; key = "<leader>b"; action = "<cmd>Telescope buffers<CR>"; options.desc = "Find Buffers"; }
     ];
 
+    # Options
+    opts = {
+      number = true;         # Show line numbers
+      relativenumber = true; # Relative line numbers
+      shiftwidth = 2;        # Tab width should be 2
+      tabstop = 2;
+      expandtab = true;      # Use spaces instead of tabs
+      smartindent = true;
+      clipboard = "unnamedplus"; # Use system clipboard
+    };
+
+    # Plugins
     plugins = {
-      dashboard.enable = true;
-      lualine.enable = true;
-      neo-tree.enable = true;
-      telescope.enable = true;
+      lualine.enable = true; # Status bar
+      web-devicons.enable = true; # Required for icons
+      
+      # File Explorer
+      neo-tree = {
+        enable = true;
+        settings = {
+            close_if_last_window = true;
+        };
+      };
+
+      # Fuzzy Finder
+      telescope = {
+        enable = true;
+        keymaps = {
+          "<C-p>" = "find_files";
+          "<leader>/" = "live_grep";
+        };
+      };
+
+      # Syntax Highlighting
       treesitter = {
         enable = true;
-        settings.highlight.enable = true;
+        settings.indent.enable = true;
       };
-      gitsigns.enable = true;
-      
-      luasnip.enable = true;
-      
-      cmp-nvim-lsp.enable = true;
-      cmp-path.enable = true;
-      cmp-buffer.enable = true;
-      cmp-luasnip.enable = true;
 
+      # LSP (Language Server Protocol)
+      lsp = {
+        enable = true;
+        servers = {
+          # Nix
+          nixd.enable = true;
+          # Python
+          pyright.enable = true;
+          # Go
+          gopls.enable = true;
+          # Bash
+          bashls.enable = true;
+        };
+      };
+
+      # Autocomplete
       cmp = {
         enable = true;
         autoEnableSources = true;
         settings = {
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          };
           sources = [
             { name = "nvim_lsp"; }
             { name = "path"; }
             { name = "buffer"; }
-            { name = "luasnip"; }
           ];
-          mapping = {
-            "<C-Space>" = "cmp.mapping.complete()";
-            "<CR>" = "cmp.mapping.confirm({select = true})";
-            "<Tab>" = {
-              __raw = ''
-                cmp.mapping(function(fallback)
-                  if cmp.visible() then
-                    cmp.select_next_item()
-                  elseif require('luasnip').expand_or_jumpable() then
-                    require('luasnip').expand_or_jump()
-                  else
-                    fallback()
-                  end
-                end, {'i', 's'})
-              '';
-            };
-            "<S-Tab>" = {
-              __raw = ''
-                cmp.mapping(function(fallback)
-                  if cmp.visible() then
-                    cmp.select_prev_item()
-                  elseif require('luasnip').jumpable(-1) then
-                    require('luasnip').jump(-1)
-                  else
-                    fallback()
-                  end
-                end, {'i', 's'})
-              '';
-            };
-          };
         };
       };
-
-      lsp = {
-        enable = true;
-        servers = {
-          nixd.enable = true;
-          pyright.enable = true;
-          lua_ls.enable = true;
-        };
-        keymaps = {
-          silent = true;
-          lspBuf = {
-            gd = "definition";
-            gD = "references";
-            K = "hover";
-            "<leader>rn" = "rename";
-            "<leader>ca" = "code_action";
-          };
-        };
-      };
+      
+      # Git
+      gitsigns.enable = true;
+      
+      # Auto-pairs (brackets)
+      nvim-autopairs.enable = true;
     };
   };
 }
