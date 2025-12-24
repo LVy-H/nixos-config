@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./hardware-tweaks.nix
     ];
 
   # Bootloader.
@@ -136,12 +137,6 @@
   services.libinput.enable = true;
   services.touchegg.enable = true;
   
-  # Fix for Acer Aspire Mic Mute Key
-  services.udev.extraHwdb = ''
-    evdev:atkbd:dmi:bvn*:bvr*:bd*:svnAcer*:pn*:*
-     KEYBOARD_KEY_66=micmute
-  '';
-
   fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
   
   security.pam.services.swaylock = {};
@@ -165,7 +160,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 7d";
+    options = "--delete-older-than 30d";
   };
 
   nixpkgs.overlays = [
@@ -179,8 +174,7 @@
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

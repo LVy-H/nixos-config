@@ -13,6 +13,8 @@
     ./programs/git.nix
     ./programs/mako.nix
     ./programs/nixvim.nix
+    ./programs/yazi.nix
+    ./programs/zellij.nix
   ];
 
   home = {
@@ -44,6 +46,10 @@
     dust            # dust (better du)
     duf             # duf (better df)
     procs           # procs (better ps)
+    yazi            # Terminal file manager
+    fastfetch       # System info
+    zellij          # Terminal multiplexer
+    glow            # Markdown reader
 
     # Archives
     zip

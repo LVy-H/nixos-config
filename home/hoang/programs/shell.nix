@@ -25,6 +25,11 @@
       ps = "procs";
       df = "duf";
       
+      # New Fancy Tools
+      ff = "fastfetch";
+      md = "glow";
+      ra = "yazi";
+      
       # Archives
       x = "ouch decompress";
       xx = "ouch compress";
