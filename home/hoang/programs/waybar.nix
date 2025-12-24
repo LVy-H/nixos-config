@@ -15,7 +15,7 @@
         
         modules-left = [ "custom/launcher" "sway/workspaces" "sway/mode" ];
         modules-center = [ "clock" ];
-        modules-right = [ "pulseaudio" "pulseaudio#microphone" "backlight" "cpu" "memory" "network" "battery" "tray" ];
+        modules-right = [ "pulseaudio" "pulseaudio#microphone" "backlight" "cpu" "memory" "disk" "network" "battery" "tray" ];
         
         "custom/launcher" = {
             format = "";
@@ -48,7 +48,7 @@
         "network" = {
           format-wifi = "";
           format-ethernet = "";
-          tooltip-format = "{ifname} via {gwaddr}";
+          tooltip-format = "{ifname} via {gwaddr}\nDownload: {bandwidthDownBits}\nUpload: {bandwidthUpBits}";
           format-linked = "{ifname} (No IP)";
           format-disconnected = "⚠";
           format-alt = "{essid} ({signalStrength}%) | {ipaddr}/{cidr}";
@@ -82,13 +82,23 @@
         
         "cpu" = {
           format = "{usage}% ";
-          tooltip = false;
+          tooltip = true;
+          tooltip-format = "Usage: {usage}%\nFreq: {avg_frequency}GHz";
           on-click = "kitty -e btop";
         };
         
         "memory" = {
           format = "{}% ";
+          tooltip-format = "RAM: {used:0.1f}GiB / {total:0.1f}GiB ({percentage}%)\nSwap: {swapUsed:0.1f}GiB / {swapTotal:0.1f}GiB";
           on-click = "kitty -e btop";
+        };
+
+        "disk" = {
+            interval = 30;
+            format = "{percentage_used}% ";
+            path = "/";
+            tooltip-format = "Root: {used} / {total} ({percentage_used}%)\nFree: {free}";
+            on-click = "kitty -e ncdu";
         };
         
         "backlight" = {

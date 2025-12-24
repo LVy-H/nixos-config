@@ -42,7 +42,7 @@ window#waybar {
   margin-left: 10px;
 }
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #tray, #backlight, #custom-launcher {
+#clock, #battery, #cpu, #memory, #disk, #network, #pulseaudio, #tray, #backlight, #custom-launcher {
   background: #24273a;
   padding: 0 15px;
   margin-top: 5px;
@@ -97,6 +97,10 @@ window#waybar {
 
 #memory {
   color: #eed49f; /* Yellow */
+}
+
+#disk {
+  color: #8aadf4; /* Blue */
 }
 
 #custom-launcher {

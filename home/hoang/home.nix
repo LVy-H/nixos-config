@@ -30,6 +30,10 @@
     libnotify       # Notifications
     wev             # Input debugging
     btop            # System monitor
+    brightnessctl   # Screen brightness control
+    libinput        # Input debugging tools
+    pulseaudio      # Provides pactl for volume control
+    ncdu            # Disk usage analyzer
     
     # Clipboard & Recording
     cliphist        # Clipboard manager

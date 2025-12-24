@@ -13,6 +13,20 @@
       keybindings = let
         modifier = "Mod4";
       in lib.mkOptionDefault {
+        # Audio Control
+        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        
+        # Mic Volume Control (Ctrl + Volume Keys)
+        "Control+XF86AudioRaiseVolume" = "exec pactl set-source-volume @DEFAULT_SOURCE@ +5%";
+        "Control+XF86AudioLowerVolume" = "exec pactl set-source-volume @DEFAULT_SOURCE@ -5%";
+
+        # Brightness Control
+        "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
+        "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+
         # Screenshot (Full Screen) -> Clipboard
         "Print" = "exec grim - | wl-copy && notify-send 'Screenshot' 'Full screen copied to clipboard'";
         
