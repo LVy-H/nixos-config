@@ -12,6 +12,7 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
@@ -54,8 +55,6 @@
     LC_ADDRESS = "vi_VN";
     LC_IDENTIFICATION = "vi_VN";
     LC_MEASUREMENT = "vi_VN";
-    LC_MONETARY = "vi_VN";
-    LC_NAME = "vi_VN";
     LC_NUMERIC = "vi_VN";
     LC_PAPER = "vi_VN";
     LC_TELEPHONE = "vi_VN";
@@ -129,25 +128,31 @@
   '';
 
   fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  
+  security.pam.services.swaylock = {};
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  programs.dconf.enable = true;
   services.displayManager.sddm = {
     wayland.enable = true;
     enable = true;
   };
   services.displayManager.sessionPackages = [pkgs.sway];
   # Inside configuration.nix
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   nixpkgs.overlays = [
     (final: prev: {
       inherit (prev.lixPackageSets.stable) nixpkgs-review nix-eval-jobs nix-fast-build colmena;
@@ -155,6 +160,7 @@
   ];
 
   nix.package = pkgs.lixPackageSets.stable.lix;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

@@ -44,6 +44,9 @@
 
         # Clipboard History (with large image previews)
         "${modifier}+v" = "exec cliphist list | cliphist-rofi-img | rofi -dmenu -show-icons -theme-str 'element-icon { size: 96px; }' -theme-str 'listview { lines: 6; }' | cliphist decode | wl-copy";
+
+        # Manual Lock
+        "${modifier}+l" = "exec swaylock -f";
       };
 
       startup = [

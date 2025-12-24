@@ -7,6 +7,9 @@
     ./programs/rofi.nix
     ./programs/kitty.nix
     ./programs/sway.nix
+    ./programs/lock.nix
+    ./programs/theme.nix
+    ./programs/shell.nix
     # ./programs/nixvim.nix
   ];
 
