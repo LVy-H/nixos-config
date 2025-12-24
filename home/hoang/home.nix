@@ -38,6 +38,11 @@
     pulseaudio      # Provides pactl for volume control
     ncdu            # Disk usage analyzer
     
+    # Modern CLI Tools
+    dust            # dust (better du)
+    duf             # duf (better df)
+    procs           # procs (better ps)
+
     # Clipboard & Recording
     cliphist        # Clipboard manager
     wl-clipboard    # Clipboard utils
