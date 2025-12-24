@@ -43,6 +43,17 @@
     duf             # duf (better df)
     procs           # procs (better ps)
 
+    # Archives
+    zip
+    xz
+    unzip
+    p7zip
+    ouch            # Modern all-in-one archiver
+    
+    # JSON/YAML Tools
+    jq
+    yq-go
+    
     # Clipboard & Recording
     cliphist        # Clipboard manager
     wl-clipboard    # Clipboard utils

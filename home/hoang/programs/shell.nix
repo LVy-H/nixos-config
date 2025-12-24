@@ -25,6 +25,10 @@
       ps = "procs";
       df = "duf";
       
+      # Archives
+      x = "ouch decompress";
+      xx = "ouch compress";
+      
       # Git
       gs = "git status";
       ga = "git add";
