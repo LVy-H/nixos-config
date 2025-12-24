@@ -109,7 +109,7 @@
     kitty-themes
     distrobox
     go
-    python
+    python3
     openjdk21
   ];
 
