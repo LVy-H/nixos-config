@@ -25,10 +25,12 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.hoang = import [
-              ./home/hoang/home.nix
-              nixvim.homeManagerModules.nixvim
-            ];
+            home-manager.users.hoang = {
+              imports = [
+                ./home/hoang/home.nix
+                nixvim.homeModules.nixvim
+              ];
+            };
           }
         ];
       };

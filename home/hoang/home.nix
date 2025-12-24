@@ -3,7 +3,7 @@
 {
   imports = [
     ./programs/waybar.nix
-    ./programs/nixvim.nix
+    # ./programs/nixvim.nix
   ];
 
   home.username = "hoang";
