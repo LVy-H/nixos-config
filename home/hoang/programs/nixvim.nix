@@ -11,31 +11,23 @@
       settings.flavour = "macchiato";
     };
 
-    # Keymaps (Space as leader)
-    globals.mapleader = " ";
-    keymaps = [
-      { mode = "n"; key = "<leader>e"; action = "<cmd>Neotree toggle<CR>"; options.desc = "Toggle Explorer"; }
-      { mode = "n"; key = "<leader>ff"; action = "<cmd>Telescope find_files<CR>"; options.desc = "Find Files"; }
-      { mode = "n"; key = "<leader>fg"; action = "<cmd>Telescope live_grep<CR>"; options.desc = "Grep Files"; }
-      { mode = "n"; key = "<leader>b"; action = "<cmd>Telescope buffers<CR>"; options.desc = "Find Buffers"; }
-    ];
-
-    # Options
-    opts = {
-      number = true;         # Show line numbers
-      relativenumber = true; # Relative line numbers
-      shiftwidth = 2;        # Tab width should be 2
-      tabstop = 2;
-      expandtab = true;      # Use spaces instead of tabs
-      smartindent = true;
-      clipboard = "unnamedplus"; # Use system clipboard
-    };
-
     # Plugins
     plugins = {
       lualine.enable = true; # Status bar
       web-devicons.enable = true; # Required for icons
       
+      # Helper for keybindings
+      which-key = {
+        enable = true;
+      };
+
+      # Comments
+      comment.enable = true;
+      todo-comments.enable = true;
+
+      # Diagnostics
+      trouble.enable = true;
+
       # File Explorer
       neo-tree = {
         enable = true;
@@ -99,5 +91,16 @@
       # Auto-pairs (brackets)
       nvim-autopairs.enable = true;
     };
+    
+    # Keymaps (Space as leader)
+    globals.mapleader = " ";
+    keymaps = [
+      { mode = "n"; key = "<leader>e"; action = "<cmd>Neotree toggle<CR>"; options.desc = "Toggle Explorer"; }
+      { mode = "n"; key = "<leader>ff"; action = "<cmd>Telescope find_files<CR>"; options.desc = "Find Files"; }
+      { mode = "n"; key = "<leader>fg"; action = "<cmd>Telescope live_grep<CR>"; options.desc = "Grep Files"; }
+      { mode = "n"; key = "<leader>b"; action = "<cmd>Telescope buffers<CR>"; options.desc = "Find Buffers"; }
+      { mode = "n"; key = "<leader>x"; action = "<cmd>Trouble diagnostics toggle<CR>"; options.desc = "Diagnostics (Trouble)"; }
+      { mode = "n"; key = "<leader>t"; action = "<cmd>TodoTelescope<CR>"; options.desc = "Find TODOs"; }
+    ];
   };
 }
