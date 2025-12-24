@@ -20,6 +20,11 @@
     fsType = "ntfs";
     options = [ "rw" "uid=1000" "gid=100" "nofail" ];
   };
+
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/8e58b41c-e942-407a-9bb5-64e3b8c343b2"; }
+  ];
+
   hardware.graphics.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -117,6 +122,12 @@
   services.libinput.enable = true;
   services.touchegg.enable = true;
   
+  # Fix for Acer Aspire Mic Mute Key
+  services.udev.extraHwdb = ''
+    evdev:atkbd:dmi:bvn*:bvr*:bd*:svnAcer*:pn*:*
+     KEYBOARD_KEY_66=micmute
+  '';
+
   fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
