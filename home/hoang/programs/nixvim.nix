@@ -87,6 +87,7 @@
       
       # Git
       gitsigns.enable = true;
+      lazygit.enable = true;
       
       # Auto-pairs (brackets)
       nvim-autopairs.enable = true;

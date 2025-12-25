@@ -51,4 +51,7 @@
     vim
     nh # Nix Helper
   ];
+
+  # Power Management
+  services.tlp.enable = true;
 }
