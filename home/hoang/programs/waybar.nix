@@ -10,12 +10,17 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 36;
-        spacing = 4;
+        height = 30;
+        spacing = 2;
         
         modules-left = [ "custom/launcher" "sway/workspaces" "sway/mode" ];
         modules-center = [ "sway/window" "mpris" ];
-        modules-right = [ "clock" "pulseaudio" "pulseaudio#microphone" "backlight" "cpu" "memory" "disk" "network" "custom/vpn" "bluetooth" "battery" "tray" ];
+        modules-right = [ "cpu" "memory" "disk" "custom/sep" "pulseaudio" "pulseaudio#microphone" "backlight" "custom/sep" "network" "bluetooth" "custom/vpn" "tray" "custom/sep" "battery" "clock" ];
+
+        "custom/sep" = {
+            format = "|";
+            tooltip = false;
+        };
         
         "mpris" = {
             format = "{player_icon} {dynamic}";
@@ -23,14 +28,21 @@
             player-icons = { 
                 default = "▶"; 
                 mpd = "🎵"; 
+                spotify = "";
+                firefox = "";
+                chromium = "";
             };
             status-icons = {
                 paused = "⏸";
+                playing = "▶";
+                stopped = "";
             };
-            max-length = 40;
+            max-length = 30;
             on-click = "playerctl play-pause";
+            on-click-right = "playerctl stop";
             on-scroll-up = "playerctl next";
             on-scroll-down = "playerctl previous";
+            tooltip-format = "{player} ({status})\n{artist} - {title}\n{album}";
         };
 
         "custom/launcher" = {
@@ -47,10 +59,15 @@
 
         "sway/window" = {
             format = "{title}";
-            max-length = 50;
+            max-length = 40;
             rewrite = {
-                "(.*) - Mozilla Firefox" = "Firefox";
-                "(.*) - Visual Studio Code" = "VSCode";
+                "(.*) - Mozilla Firefox" = "  $1";
+                "(.*) - Visual Studio Code" = "󰨞  $1";
+                "(.*) - Kitty" = "  [$1]";
+                "(.*) - Thunar" = "  $1";
+                "(.*) - Spotify" = "  $1";
+                "(.*) - Discord" = "  $1";
+                "^$" = "  Empty";
             };
         };
         
@@ -73,11 +90,11 @@
         
         "network" = {
           interval = 3;
-          format-wifi = "  {essid} ({signalStrength}%)";
-          format-ethernet = "  {ipaddr}";
+          format-wifi = " {essid}";
+          format-ethernet = " {ipaddr}";
           tooltip-format = "{ifname} via {gwaddr}\nDownload: {bandwidthDownBits}\nUpload: {bandwidthUpBits}";
           format-linked = "{ifname} (No IP)";
-          format-disconnected = "⚠ Disconnected";
+          format-disconnected = "⚠";
           format-alt = "{ifname}: {ipaddr}/{cidr}";
           on-click = "nm-connection-editor";
         };
@@ -85,7 +102,7 @@
         "bluetooth" = {
             format = " {status}";
             format-disabled = "";
-            format-connected = " {num_connections} connected";
+            format-connected = " {num_connections}";
             tooltip-format = "{controller_alias}\t{controller_address}";
             tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
             tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
@@ -96,7 +113,7 @@
           format = "{volume}% {icon}";
           format-bluetooth = "{volume}% {icon}";
           format-bluetooth-muted = " {icon}";
-          format-muted = " Muted";
+          format-muted = "";
           format-icons = {
             headphone = "";
             hands-free = "";
@@ -112,7 +129,7 @@
         "pulseaudio#microphone" = {
             format = "{format_source}";
             format-source = " {volume}%";
-            format-source-muted = " Muted";
+            format-source-muted = "";
             on-click = "pavucontrol";
             on-scroll-up = "pactl set-source-volume @DEFAULT_SOURCE@ +5%";
             on-scroll-down = "pactl set-source-volume @DEFAULT_SOURCE@ -5%";
@@ -120,7 +137,7 @@
         
         "cpu" = {
           interval = 2;
-          format = " {usage}% ({avg_frequency}GHz)";
+          format = " {usage}%";
           tooltip = true;
           tooltip-format = "Usage: {usage}%\nFreq: {avg_frequency}GHz";
           on-click = "kitty -e btop";
@@ -128,14 +145,14 @@
         
         "memory" = {
           interval = 5;
-          format = " {used:0.1f}G/{total:0.1f}G";
+          format = " {percentage}%";
           tooltip-format = "RAM: {used:0.1f}GiB / {total:0.1f}GiB ({percentage}%)\nSwap: {swapUsed:0.1f}GiB / {swapTotal:0.1f}GiB";
           on-click = "kitty -e btop";
         };
 
         "disk" = {
             interval = 30;
-            format = " {free} free";
+            format = " {percentage_used}%";
             path = "/";
             tooltip-format = "Root: {used} / {total} ({percentage_used}%)\nFree: {free}";
             on-click = "kitty -e ncdu";

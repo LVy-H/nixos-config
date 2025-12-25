@@ -1,98 +1,65 @@
 * {
   font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
-  font-size: 13px;
+  font-size: 11px; /* Reduced from 13px */
   font-weight: 600;
 }
 
 window#waybar {
-  background: #1e1e2e; /* Solid dark background for the whole bar */
+  background: #1e1e2e;
   color: #cdd6f4;
-  border-bottom: 2px solid #313244;
+  border-bottom: 1px solid #313244; /* Thinner border */
 }
 
 /* Workspaces */
 #workspaces {
-  margin: 0 10px;
+  margin: 0;
+  padding: 0;
 }
 
 #workspaces button {
-  padding: 0 8px;
+  padding: 0 6px; /* Reduced padding */
   color: #a6adc8;
   border-bottom: 2px solid transparent;
   border-radius: 0;
 }
 
-#workspaces button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-}
-
 #workspaces button.focused {
   color: #ffffff;
-  border-bottom: 2px solid #89b4fa; /* Subtle accent for active workspace */
-}
-
-#workspaces button.urgent {
-  color: #f38ba8;
+  background: #313244;
+  border-bottom: 2px solid #89b4fa;
 }
 
 /* Modules */
-.modules-right {
-  margin-right: 10px;
+.modules-left, .modules-center, .modules-right {
+    margin: 0 2px;
 }
 
-.modules-left {
-  margin-left: 10px;
-}
-
-/* Common style for all right-side modules */
+/* Minimalist Module Styling */
 #clock, #battery, #cpu, #memory, #disk, #network, #pulseaudio, #pulseaudio.microphone, #tray, #backlight, #custom-launcher, #custom-vpn, #bluetooth, #window, #mpris {
-  padding: 0 10px;
-  margin: 4px 2px;
-  color: #cdd6f4; /* Unified text color */
-  background: transparent;
-  border-radius: 4px;
+  padding: 0 4px; /* Reduced from 8px */
+  margin: 0; 
+  color: #cdd6f4;
+}
+
+#custom-sep {
+    color: #45475a;
+    padding: 0 2px;
 }
 
 #window {
     font-weight: bold;
-    color: #cba6f7; /* Soft purple for the app name */
+    color: #cba6f7;
 }
 
 #mpris {
-    color: #a6e3a1; /* Green for music */
+    color: #a6e3a1;
 }
 
-/* Hover effect to indicate interactivity */
-#clock:hover, #battery:hover, #cpu:hover, #memory:hover, #disk:hover, #network:hover, #pulseaudio:hover, #custom-vpn:hover, #bluetooth:hover, #mpris:hover {
-  background: #313244; /* Lighten on hover */
-  color: #ffffff;
+#clock {
+    color: #89b4fa;
 }
 
-/* Subtle status colors for critical states only */
-#battery.warning:not(.charging) {
-  color: #fab387;
-}
-
-#battery.critical:not(.charging) {
-  color: #f38ba8;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#network.disconnected {
-  color: #f38ba8;
-}
-
-#pulseaudio.muted {
-  color: #6c7086;
-}
-
-@keyframes blink {
-  to {
-    color: #ffffff;
-  }
-}
+#battery.warning:not(.charging) { color: #fab387; }
+#battery.critical:not(.charging) { color: #f38ba8; }
+#network.disconnected { color: #f38ba8; }
+#pulseaudio.muted { color: #6c7086; }
