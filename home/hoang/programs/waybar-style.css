@@ -1,36 +1,39 @@
 * {
   font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 window#waybar {
-  background: transparent; /* Transparent background for floating look */
-  color: #cad3f5;
+  background: #1e1e2e; /* Solid dark background for the whole bar */
+  color: #cdd6f4;
+  border-bottom: 2px solid #313244;
 }
 
 /* Workspaces */
 #workspaces {
-  background: #24273a;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 10px;
-  border-radius: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
+  margin: 0 10px;
 }
 
 #workspaces button {
-  padding: 0 5px;
-  color: #6e738d;
+  padding: 0 8px;
+  color: #a6adc8;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+}
+
+#workspaces button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
 #workspaces button.focused {
-  color: #c6a0f6; /* Mauve */
+  color: #ffffff;
+  border-bottom: 2px solid #89b4fa; /* Subtle accent for active workspace */
 }
 
 #workspaces button.urgent {
-  color: #ed8796; /* Red */
+  color: #f38ba8;
 }
 
 /* Modules */
@@ -42,36 +45,37 @@ window#waybar {
   margin-left: 10px;
 }
 
-#clock, #battery, #cpu, #memory, #disk, #network, #pulseaudio, #tray, #backlight, #custom-launcher {
-  background: #24273a;
-  padding: 0 15px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-  border-radius: 15px;
-  color: #cad3f5;
+/* Common style for all right-side modules */
+#clock, #battery, #cpu, #memory, #disk, #network, #pulseaudio, #pulseaudio.microphone, #tray, #backlight, #custom-launcher, #custom-vpn, #bluetooth, #window, #mpris {
+  padding: 0 10px;
+  margin: 4px 2px;
+  color: #cdd6f4; /* Unified text color */
+  background: transparent;
+  border-radius: 4px;
 }
 
-/* Specific Module Colors */
-#clock {
-  color: #8aadf4; /* Blue */
+#window {
+    font-weight: bold;
+    color: #cba6f7; /* Soft purple for the app name */
 }
 
-#battery {
-  color: #a6da95; /* Green */
+#mpris {
+    color: #a6e3a1; /* Green for music */
 }
 
-#battery.charging {
-  color: #eed49f; /* Yellow */
+/* Hover effect to indicate interactivity */
+#clock:hover, #battery:hover, #cpu:hover, #memory:hover, #disk:hover, #network:hover, #pulseaudio:hover, #custom-vpn:hover, #bluetooth:hover, #mpris:hover {
+  background: #313244; /* Lighten on hover */
+  color: #ffffff;
 }
 
+/* Subtle status colors for critical states only */
 #battery.warning:not(.charging) {
-  color: #f5a97f; /* Peach */
+  color: #fab387;
 }
 
 #battery.critical:not(.charging) {
-  color: #ed8796; /* Red */
+  color: #f38ba8;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -79,42 +83,16 @@ window#waybar {
   animation-direction: alternate;
 }
 
-#network {
-  color: #f5bde6; /* Pink */
+#network.disconnected {
+  color: #f38ba8;
 }
 
-#pulseaudio, #pulseaudio.microphone {
-  color: #c6a0f6; /* Mauve */
-}
-
-#backlight {
-  color: #f5a97f; /* Peach */
-}
-
-#cpu {
-  color: #8bd5ca; /* Teal */
-}
-
-#memory {
-  color: #eed49f; /* Yellow */
-}
-
-#disk {
-  color: #8aadf4; /* Blue */
-}
-
-#custom-launcher {
-  color: #8aadf4;
-  padding-right: 15px; /* Adjust for icon visual balance */
-}
-
-#tray {
-  background-color: #24273a;
+#pulseaudio.muted {
+  color: #6c7086;
 }
 
 @keyframes blink {
   to {
-    background-color: #ffffff;
-    color: #000000;
+    color: #ffffff;
   }
 }

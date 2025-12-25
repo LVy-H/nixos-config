@@ -27,12 +27,15 @@
   home.packages = with pkgs; [
     # GUI Apps
     google-chrome
+    firefox
     discord
+    spotify         # Music Player
     pavucontrol
     gsimplecal
     networkmanagerapplet
     
     # Utilities
+    playerctl       # Media controller
     antigravity-fhs
     libnotify       # Notifications
     wev             # Input debugging
@@ -50,6 +53,8 @@
     fastfetch       # System info
     zellij          # Terminal multiplexer
     glow            # Markdown reader
+    eza             # Modern ls replacement
+    manix           # Nix documentation searcher
 
     # Archives
     zip
@@ -66,6 +71,8 @@
     cliphist        # Clipboard manager
     wl-clipboard    # Clipboard utils
     wf-recorder     # Screen recorder
+    grim            # Screenshot tool
+    slurp           # Region selector
     
     # Fonts
     font-awesome    # Icon font for Waybar

@@ -1,49 +1,76 @@
 { pkgs, ... }:
 
+let
+  myAliases = {
+    # NixOS shortcuts
+    nos = "sudo nixos-rebuild switch --flake .#nixos";
+    not = "sudo nixos-rebuild test --flake .#nixos";
+    
+    # Navigation
+    ".." = "cd ..";
+    "..." = "cd ../..";
+    
+    # Modern CLI Replacements
+    cat = "bat";
+    ls = "eza --icons --group-directories-first";
+    ll = "eza -lh --icons --group-directories-first --git";
+    la = "eza -lah --icons --group-directories-first --git";
+    tree = "eza --tree --icons";
+    find = "fd";
+    grep = "rg";
+    du = "dust";
+    ps = "procs";
+    df = "duf";
+    
+    # New Fancy Tools
+    ff = "fastfetch";
+    md = "glow";
+    ra = "yazi";
+    ze = "zellij";
+    
+    # Archives
+    x = "ouch decompress";
+    xx = "ouch compress";
+    
+    # Git
+    gs = "git status";
+    ga = "git add";
+    gc = "git commit";
+    gp = "git push";
+  };
+in
 {
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    shellAliases = {
-      # NixOS shortcuts
-      nos = "sudo nixos-rebuild switch --flake .#nixos";
-      not = "sudo nixos-rebuild test --flake .#nixos";
-      
-      # Navigation
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      
-      # Modern CLI Replacements
-      cat = "bat";
-      ls = "lsd";
-      ll = "lsd -l";
-      la = "lsd -la";
-      tree = "lsd --tree";
-      find = "fd";
-      grep = "rg";
-      du = "dust";
-      ps = "procs";
-      df = "duf";
-      
-      # New Fancy Tools
-      ff = "fastfetch";
-      md = "glow";
-      ra = "yazi";
-      
-      # Archives
-      x = "ouch decompress";
-      xx = "ouch compress";
-      
-      # Git
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gp = "git push";
+    shellAliases = myAliases;
+  };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    enableVteIntegration = true;
+    
+    shellAliases = myAliases;
+    
+    history = {
+      size = 10000;
+      path = "$HOME/.zsh_history";
+    };
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "sudo" "docker" "colored-man-pages" "command-not-found" ];
+      theme = "robbyrussell"; # Overridden by Starship
     };
   };
 
   programs.starship = {
     enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
     settings = {
       add_newline = false;
       format = "$all";
@@ -57,30 +84,35 @@
   # Modern Core Tools
   programs.bat = {
     enable = true;
-    config.theme = "Dracula"; # Good fallback, or Catppuccin if available
+    config.theme = "Dracula";
   };
 
-  programs.lsd = {
+  programs.eza = {
     enable = true;
-    enableBashIntegration = false; # We manually set aliases above
+    enableBashIntegration = true;
+    enableZshIntegration = true;
   };
 
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
-    options = [ "--cmd cd" ]; # Replace 'cd' with 'z'
+    enableZshIntegration = true;
+    options = [ "--cmd cd" ];
   };
 
-  programs.ripgrep.enable = true; # grep replacement
-  programs.fd.enable = true;      # find replacement
+  programs.ripgrep.enable = true;
+  programs.fd.enable = true;
   
-  programs.tealdeer = {           # tldr (man replacement)
+  programs.tealdeer = {
     enable = true;
     settings.updates.auto_update = true;
   };
 
-  programs.fzf = {                # Fuzzy finder
+  programs.fzf = {
     enable = true;
     enableBashIntegration = true;
+    enableZshIntegration = true;
   };
+
+  programs.yazi.enableZshIntegration = true;
 }
