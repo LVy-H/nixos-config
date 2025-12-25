@@ -46,6 +46,7 @@
     ncdu            # Disk usage analyzer
     
     # Modern CLI Tools
+    distrobox       # Container tool
     dust            # dust (better du)
     duf             # duf (better df)
     procs           # procs (better ps)
