@@ -11,5 +11,8 @@
     setSocketVariable = true;
   };
 
-  environment.systemPackages = [ ]; # Add distrobox if needed, though it's in home.nix usually
+  environment.systemPackages = with pkgs; [
+    qemu
+    OVMF
+  ]; # Add distrobox if needed, though it's in home.nix usually
 }
