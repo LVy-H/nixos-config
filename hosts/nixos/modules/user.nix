@@ -4,7 +4,7 @@
   users.users.hoang = {
     isNormalUser = true;
     description = "hoang";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "libvirtd" ];
     shell = pkgs.zsh;
   };
 
@@ -16,5 +16,11 @@
     go
     python3
     openjdk21
+    
+    # Kubernetes
+    kubectl
+    minikube
+    kubernetes-helm
+    k9s
   ];
 }

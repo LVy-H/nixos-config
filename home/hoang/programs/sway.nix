@@ -3,6 +3,7 @@
 {
   wayland.windowManager.sway = {
     enable = true;
+    package = pkgs.swayfx;
     checkConfig = false;
     config = {
       modifier = "Mod4";
@@ -115,6 +116,25 @@
     extraConfig = ''
       default_border pixel 2
       default_floating_border pixel 2
+      
+      # Gestures
+      bindgesture swipe:3:right workspace prev
+      bindgesture swipe:3:left workspace next
+      bindgesture swipe:3:up focus up
+      bindgesture swipe:3:down focus down
+
+      # SwayFX Visuals
+      corner_radius 6
+      shadows enable
+      shadow_blur_radius 10
+      shadow_color #00000080
+      
+      # Blur
+      blur enable
+      blur_passes 2
+      blur_radius 3
+      layer_effects "waybar" blur enable
+      layer_effects "waybar" shadows enable
     '';
   };
 }

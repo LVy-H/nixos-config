@@ -1,5 +1,15 @@
 { pkgs, ... }:
 
+let
+  astronaut = pkgs.sddm-astronaut.override {
+    themeConfig = {
+      Background = "${../assets/background.png}";
+      # Additional beautiful defaults for astronaut if desired
+      Font = "JetBrainsMono Nerd Font";
+      PartialBlur = "true";
+    };
+  };
+in
 {
   # Graphics
   hardware.graphics.enable = true;
@@ -40,8 +50,14 @@
   services.displayManager.sddm = {
     wayland.enable = true;
     enable = true;
+    theme = "sddm-astronaut-theme";
+    extraPackages = with pkgs.kdePackages; [
+      qtsvg
+      qtmultimedia
+      qtvirtualkeyboard
+    ];
   };
-  services.displayManager.sessionPackages = [ pkgs.sway ];
+  services.displayManager.sessionPackages = [ pkgs.swayfx ];
 
   # Services
   services.libinput.enable = true;
@@ -63,4 +79,8 @@
   
   # System-wide programs
   programs.dconf.enable = true;
+  
+  environment.systemPackages = [
+    astronaut
+  ];
 }

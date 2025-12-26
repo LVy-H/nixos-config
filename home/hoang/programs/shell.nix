@@ -51,7 +51,9 @@ in
     enable = true;
     enableCompletion = true;
     shellAliases = myAliases;
-    initExtra = safeAliases;
+    initExtra = safeAliases + ''
+      if command -v zoxide &> /dev/null; then eval "$(zoxide init bash --cmd cd)"; fi
+    '';
   };
 
   programs.zsh = {
@@ -62,7 +64,9 @@ in
     enableVteIntegration = true;
     
     shellAliases = myAliases;
-    initContent = safeAliases;
+    initContent = safeAliases + ''
+      if command -v zoxide &> /dev/null; then eval "$(zoxide init zsh --cmd cd)"; fi
+    '';
     
     history = {
       size = 10000;
@@ -98,15 +102,14 @@ in
 
   programs.eza = {
     enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
   };
 
   programs.zoxide = {
     enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    options = [ "--cmd cd" ];
+    enableBashIntegration = false;
+    enableZshIntegration = false;
   };
 
   programs.ripgrep.enable = true;

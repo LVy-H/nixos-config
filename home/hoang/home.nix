@@ -30,6 +30,8 @@
     firefox
     discord
     spotify         # Music Player
+    telegram-desktop
+    burpsuite
     pavucontrol
     gsimplecal
     networkmanagerapplet
@@ -47,6 +49,8 @@
     
     # Modern CLI Tools
     distrobox       # Container tool
+    nodejs_22
+    corepack_22
     dust            # dust (better du)
     duf             # duf (better df)
     procs           # procs (better ps)
