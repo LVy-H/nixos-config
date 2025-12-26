@@ -6,10 +6,7 @@
 
   virtualisation.podman.enable = true;
 
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
+  virtualisation.docker.enable = true;
 
   environment.systemPackages = with pkgs; [
     qemu
