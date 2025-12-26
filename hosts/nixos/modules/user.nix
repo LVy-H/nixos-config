@@ -22,5 +22,6 @@
     minikube
     kubernetes-helm
     k9s
+    kubectx
   ];
 }
