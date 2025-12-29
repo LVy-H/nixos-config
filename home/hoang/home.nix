@@ -32,6 +32,7 @@
     spotify         # Music Player
     telegram-desktop
     burpsuite
+    obsidian
     pavucontrol
     gsimplecal
     networkmanagerapplet
@@ -57,9 +58,13 @@
     yazi            # Terminal file manager
     fastfetch       # System info
     zellij          # Terminal multiplexer
+    tmux            # Terminal multiplexer
     glow            # Markdown reader
     eza             # Modern ls replacement
     manix           # Nix documentation searcher
+
+    # Cloud
+    (azure-cli.withExtensions [ azure-cli-extensions.ssh ])
 
     # Archives
     zip
