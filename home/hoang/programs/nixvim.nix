@@ -91,6 +91,14 @@
       
       # Auto-pairs (brackets)
       nvim-autopairs.enable = true;
+      
+      # UI Improvements
+      indent-blankline = {
+        enable = true;
+        settings = {
+          scope.enabled = true;
+        };
+      };
     };
     
     # Keymaps (Space as leader)

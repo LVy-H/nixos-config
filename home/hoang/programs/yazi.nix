@@ -12,7 +12,7 @@
         sort_sensitive = false;
         sort_reverse = false;
         sort_dir_first = true;
-        linemode = "none";
+        linemode = "size";
         show_symlink = true;
       };
     };

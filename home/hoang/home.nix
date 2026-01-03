@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports = [
@@ -21,10 +21,21 @@
     username = "hoang";
     homeDirectory = "/home/hoang";
     stateVersion = "25.11";
+
+    sessionVariables = {
+      ANDROID_HOME = "$HOME/Android/Sdk";
+      ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
+    };
+
+    sessionPath = [
+      "$HOME/Android/Sdk/platform-tools"
+      "$HOME/Android/Sdk/tools/bin"
+    ];
   };
 
   # User Packages
   home.packages = with pkgs; [
+    inputs.foldermanager.packages.${pkgs.stdenv.hostPlatform.system}.default
     # GUI Apps
     google-chrome
     firefox
@@ -40,6 +51,7 @@
     # Utilities
     playerctl       # Media controller
     antigravity-fhs
+    vscode-fhs
     libnotify       # Notifications
     wev             # Input debugging
     btop            # System monitor

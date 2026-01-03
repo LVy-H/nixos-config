@@ -4,7 +4,7 @@
   users.users.hoang = {
     isNormalUser = true;
     description = "hoang";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "libvirtd" "kvm" "adbusers" "vboxusers" ];
     shell = pkgs.zsh;
   };
 
@@ -12,7 +12,6 @@
 
   # Move non-essential system apps to Home Manager later, but keep basic dev tools here if preferred
   environment.systemPackages = with pkgs; [
-    distrobox
     go
     python3
     openjdk21

@@ -11,6 +11,7 @@
     ./modules/desktop.nix
     ./modules/virtualization.nix
     ./modules/user.nix
+    ./modules/nvidia.nix
   ];
 
   fileSystems."/mnt/Data" = {

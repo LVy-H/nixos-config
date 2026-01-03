@@ -112,6 +112,16 @@ in
     enableZshIntegration = false;
   };
 
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    settings = {
+      auto_sync = false; # Local only by default
+      style = "compact";
+    };
+  };
+
   programs.ripgrep.enable = true;
   programs.fd.enable = true;
   

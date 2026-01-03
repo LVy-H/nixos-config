@@ -50,6 +50,8 @@
     curl
     vim
     nh # Nix Helper
+    gradle
+    kind
   ];
 
   # Power Management

@@ -1,0 +1,8 @@
+result
+/result
+.git/
+.envrc
+.direnv/
+*.log
+minikube_logs.txt
+.DS_Store
