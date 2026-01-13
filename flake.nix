@@ -15,9 +15,10 @@
       url = "path:/mnt/Data/Workspace/1_Projects/folder_manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, nixvim, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, nixvim, home-manager, stylix, ... }@inputs: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
@@ -25,6 +26,7 @@
           { nixpkgs.hostPlatform = "x86_64-linux"; }
           ./hosts/nixos/configuration.nix
           nixvim.nixosModules.nixvim
+          stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

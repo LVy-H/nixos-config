@@ -14,6 +14,7 @@
     ./programs/mako.nix
     ./programs/nixvim.nix
     ./programs/yazi.nix
+    ./programs/thunar.nix
     ./programs/zellij.nix
   ];
 
@@ -25,6 +26,7 @@
     sessionVariables = {
       ANDROID_HOME = "$HOME/Android/Sdk";
       ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
+      JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
     };
 
     sessionPath = [
@@ -41,6 +43,7 @@
     firefox
     discord
     spotify         # Music Player
+    wpsoffice       # Office Suite
     telegram-desktop
     burpsuite
     obsidian
@@ -49,6 +52,7 @@
     networkmanagerapplet
     
     # Utilities
+    udiskie         # Automounter
     playerctl       # Media controller
     antigravity-fhs
     vscode-fhs
@@ -62,12 +66,19 @@
     
     # Modern CLI Tools
     distrobox       # Container tool
+    gemini-cli      # Gemini AI CLI
     nodejs_22
     corepack_22
+    jdk21           # Java Development Kit
+    gradle          # Build tool
+    kotlin          # Kotlin language
+    kotlin-language-server # Kotlin LSP
+    ktlint          # Kotlin linter
     dust            # dust (better du)
     duf             # duf (better df)
     procs           # procs (better ps)
     yazi            # Terminal file manager
+    ranger          # TUI file manager
     fastfetch       # System info
     zellij          # Terminal multiplexer
     tmux            # Terminal multiplexer
@@ -95,6 +106,10 @@
     wf-recorder     # Screen recorder
     grim            # Screenshot tool
     slurp           # Region selector
+    
+    # System
+    blueman         # Bluetooth Manager
+    polkit_gnome    # Polkit Agent
     
     # Fonts
     font-awesome    # Icon font for Waybar

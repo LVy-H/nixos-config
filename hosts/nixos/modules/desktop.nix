@@ -22,6 +22,16 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
+    wireplumber.extraConfig = {
+      "10-bluez" = {
+        "monitor.bluez.properties" = {
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = true;
+          "bluez5.enable-hw-volume" = true;
+          "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+        };
+      };
+    };
   };
 
   # Input Method
@@ -32,6 +42,7 @@ in
       waylandFrontend = true;
       addons = with pkgs; [
         qt6Packages.fcitx5-unikey
+        fcitx5-mozc
         fcitx5-gtk
         qt6Packages.fcitx5-configtool
       ];
@@ -60,6 +71,11 @@ in
   services.displayManager.sessionPackages = [ pkgs.swayfx ];
 
   # Services
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+  services.udisks2.enable = true; # Storage management
+  programs.xfconf.enable = true; # Thunar settings storage
+  
   services.libinput.enable = true;
   services.touchegg.enable = true;
   services.gnome.gnome-keyring.enable = true;
@@ -70,6 +86,7 @@ in
     font-awesome
     noto-fonts
     noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
     noto-fonts-color-emoji
     material-design-icons
   ];

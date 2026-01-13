@@ -52,13 +52,18 @@
       };
 
       startup = [
+        { command = "udiskie &"; }
         { command = "nm-applet --indicator"; }
         { command = "blueman-applet"; }
+        { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
       ];
 
       floating.criteria = [
         { class = "gsimplecal"; }
         { title = "Floating Network Manager"; }
+        { app_id = "blueman-manager"; }
+        { app_id = ".blueman-manager-wrapped"; }
+        { class = ".blueman-manager-wrapped"; }
       ];
 
       window.commands = [
