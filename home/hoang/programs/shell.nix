@@ -97,7 +97,6 @@ in
   # Modern Core Tools
   programs.bat = {
     enable = true;
-    config.theme = "Dracula";
   };
 
   programs.eza = {

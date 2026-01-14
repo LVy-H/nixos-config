@@ -51,8 +51,19 @@
     vim
     nh # Nix Helper
     gradle
+    cargo
+    rustc
+    gcc
+    gdb
+    clang
+    lldb
+    binutils
+    rust-analyzer
+    rustfmt
     kind
   ];
+
+  environment.variables.RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 
   # Power Management
   services.tlp.enable = true;

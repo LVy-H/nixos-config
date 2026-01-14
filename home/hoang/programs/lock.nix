@@ -5,12 +5,6 @@
     enable = true;
     package = pkgs.swaylock;
     settings = {
-      color = "24273a"; # Catppuccin Macchiato background
-      ring-color = "c6a0f6"; # Mauve
-      key-hl-color = "a6da95"; # Green
-      line-color = "00000000";
-      inside-color = "00000000";
-      separator-color = "00000000";
     };
   };
 

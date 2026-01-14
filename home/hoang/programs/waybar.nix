@@ -1,5 +1,23 @@
 { pkgs, ... }:
 
+let
+  weatherScript = pkgs.writeShellScript "weather" ''
+    ${pkgs.curl}/bin/curl -s "https://wttr.in/?format=1" || echo "N/A"
+  '';
+  
+  powerScript = pkgs.writeShellScript "power-menu" ''
+    entries=" Lock\n Logout\n Suspend\n Reboot\n Shutdown"
+    selected=$(echo -e $entries | ${pkgs.rofi}/bin/rofi -dmenu -p "Power" -lines 5)
+    
+    case $selected in
+      " Lock") swaylock ;;
+      " Logout") swaymsg exit ;;
+      " Suspend") systemctl suspend ;;
+      " Reboot") systemctl reboot ;;
+      " Shutdown") systemctl poweroff ;;
+    esac
+  '';
+in
 {
   programs.waybar = {
     enable = true;
@@ -15,13 +33,27 @@
         
         modules-left = [ "custom/launcher" "sway/workspaces" "sway/mode" ];
         modules-center = [ "sway/window" "mpris" ];
-        modules-right = [ "cpu" "memory" "disk" "custom/sep" "pulseaudio" "pulseaudio#microphone" "backlight" "custom/sep" "network" "bluetooth" "custom/vpn" "tray" "custom/sep" "battery" "clock" ];
+        modules-right = [ "custom/weather" "cpu" "memory" "disk" "custom/sep" "pulseaudio" "pulseaudio#microphone" "backlight" "custom/sep" "network" "bluetooth" "custom/vpn" "tray" "custom/sep" "battery" "clock" "custom/power" ];
 
         "custom/sep" = {
             format = "|";
             tooltip = false;
         };
         
+        "custom/weather" = {
+            format = "{}";
+            exec = "${weatherScript}";
+            interval = 3600;
+            on-click = "xdg-open https://wttr.in";
+            tooltip = false;
+        };
+
+        "custom/power" = {
+            format = "⏻ ";
+            on-click = "${powerScript}";
+            tooltip = false;
+        };
+
         "mpris" = {
             format = "{player_icon} {dynamic}";
             format-paused = "{status_icon} <i>{dynamic}</i>";
@@ -72,9 +104,10 @@
         };
         
         "clock" = {
+          interval = 1;
           format = "{:%H:%M}  ";
-          format-alt = "{:%A, %B %d, %Y} ({:%H:%M})  ";
-          tooltip-format = "<tt><small>{calendar}</small></tt>";
+          format-alt = "{:%A, %B %d, %Y} ({:%H:%M:%S})  ";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           on-click = "gsimplecal"; 
         };
         

@@ -14,7 +14,6 @@
     ./programs/mako.nix
     ./programs/nixvim.nix
     ./programs/yazi.nix
-    ./programs/thunar.nix
     ./programs/zellij.nix
   ];
 
@@ -37,7 +36,6 @@
 
   # User Packages
   home.packages = with pkgs; [
-    inputs.foldermanager.packages.${pkgs.stdenv.hostPlatform.system}.default
     # GUI Apps
     google-chrome
     firefox
@@ -122,4 +120,13 @@
   };
 
   programs.home-manager.enable = true;
+
+  programs.wardex = {
+    enable = true;
+    settings = {
+      paths = {
+        workspace = "/mnt/Data/Workspace";
+      };
+    };
+  };
 }

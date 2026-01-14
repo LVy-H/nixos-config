@@ -44,8 +44,6 @@ in
     plugins = [ pkgs.rofi-calc pkgs.rofi-emoji ];
     location = "center";
     terminal = "${pkgs.kitty}/bin/kitty";
-    font = "JetBrainsMono Nerd Font 11";
-    theme = ./rofi-theme.rasi;
     extraConfig = {
       show-icons = true;
       modi = "drun,run,window,calc,emoji";

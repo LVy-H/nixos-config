@@ -81,41 +81,6 @@
       # Window borders
       window.border = 0; # Handled via extraConfig for precision
       window.titlebar = false;
-      
-      colors = {
-        focused = {
-          border = "#89b4fa";
-          background = "#1e1e2e";
-          text = "#cdd6f4";
-          indicator = "#89b4fa";
-          childBorder = "#89b4fa";
-        };
-        focusedInactive = {
-          border = "#313244";
-          background = "#1e1e2e";
-          text = "#a6adc8";
-          indicator = "#313244";
-          childBorder = "#313244";
-        };
-        unfocused = {
-          border = "#313244";
-          background = "#1e1e2e";
-          text = "#a6adc8";
-          indicator = "#313244";
-          childBorder = "#313244";
-        };
-        urgent = {
-          border = "#f38ba8";
-          background = "#f38ba8";
-          text = "#1e1e2e";
-          indicator = "#f38ba8";
-          childBorder = "#f38ba8";
-        };
-      };
-
-      output."*" = {
-        bg = "/home/hoang/Downloads/Konachan.com_-_376008_sample.jpg fill";
-      };
     };
     
     extraConfig = ''

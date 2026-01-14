@@ -11,8 +11,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    foldermanager = {
-      url = "path:/mnt/Data/Workspace/1_Projects/folder_manager";
+    wardex = {
+      url = "github:LVy-H/project_manager_cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix.url = "github:danth/stylix";
@@ -36,6 +36,7 @@
               imports = [
                 ./home/hoang/home.nix
                 nixvim.homeModules.nixvim
+                inputs.wardex.homeManagerModules.default
               ];
             };
           }
