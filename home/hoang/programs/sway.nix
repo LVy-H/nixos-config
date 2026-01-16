@@ -45,7 +45,7 @@
         "${modifier}+Shift+r" = "exec pkill wf-recorder && notify-send 'Recording' 'Stopped recording'";
 
         # Clipboard History (with large image previews)
-        "${modifier}+v" = "exec cliphist list | cliphist-rofi-img | rofi -dmenu -show-icons -theme-str 'element-icon { size: 96px; }' -theme-str 'listview { lines: 6; }' | cliphist decode | wl-copy";
+        "${modifier}+v" = "exec cliphist list | cliphist-rofi-img | rofi -dmenu -show-icons -theme-str 'window { width: 800px; }' -theme-str 'listview { columns: 2; lines: 4; }' -theme-str 'element-icon { size: 100px; }' | cliphist decode | wl-copy";
 
         # Manual Lock
         "${modifier}+l" = "exec swaylock -f";
