@@ -62,8 +62,8 @@ listview {
     border: 0px 0px 0px;
     padding: 6px 0px 0px;
     margin: 20px 20px 0px 20px;
-    columns: 2;
-    lines: 8;
+    columns: 4;
+    lines: 6;
     background-color: @bg-col;
 }
 
@@ -76,7 +76,7 @@ element {
 }
 
 element-icon {
-    size: 48px;
+    size: 64px;
     margin: 0px 10px 0px 0px;
 }
 

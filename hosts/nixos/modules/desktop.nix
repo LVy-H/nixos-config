@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   astronaut = pkgs.sddm-astronaut.override {
@@ -12,7 +12,26 @@ let
 in
 {
   # Graphics
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  # Nvidia Drivers
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false; # Use proprietary drivers for better compatibility
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+  
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 
   # Audio (PipeWire)
   security.rtkit.enable = true;
@@ -114,5 +133,6 @@ in
   
   environment.systemPackages = [
     astronaut
+    pkgs.nvtopPackages.nvidia
   ];
 }

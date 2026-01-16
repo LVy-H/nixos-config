@@ -22,5 +22,8 @@
     kubernetes-helm
     k9s
     kubectx
+    
+    # Mobile
+    android-tools
   ];
 }
