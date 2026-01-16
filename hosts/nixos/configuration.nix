@@ -47,7 +47,7 @@
       size = 24;
     };
 
-    iconTheme = {
+    icons = {
       enable = true;
       package = pkgs.catppuccin-papirus-folders.override {
         accent = "mauve";
