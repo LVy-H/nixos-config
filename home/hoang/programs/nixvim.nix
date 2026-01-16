@@ -5,11 +5,8 @@
     enable = true;
     defaultEditor = true;
 
-    # Colorscheme
-    colorschemes.catppuccin = {
-      enable = true;
-      settings.flavour = "macchiato";
-    };
+    # Colorscheme (Handled by Stylix)
+
 
     # Plugins
     plugins = {
