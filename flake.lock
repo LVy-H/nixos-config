@@ -475,11 +475,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1768407540,
-        "narHash": "sha256-jclBPTvFUWqagj0UdBkqZdmuw2x36LIPI5D86dZr9SU=",
+        "lastModified": 1768408125,
+        "narHash": "sha256-L5xb0pIewBUSNIOMinqZLeKXkzGZHYk3Jl5k2Y+Q4zE=",
         "owner": "LVy-H",
         "repo": "project_manager_cli",
-        "rev": "f1c1de3a4942ca52af368c58c52e04e9bd22e45f",
+        "rev": "7b7152fe8b21c1ff47249931ef1ff8fee16e3d05",
         "type": "github"
       },
       "original": {

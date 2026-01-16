@@ -6,7 +6,13 @@
 
   virtualisation.podman.enable = true;
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      dns = [ "8.8.8.8" "1.1.1.1" ];
+      mtu = 1280;
+    };
+  };
 
   virtualisation.waydroid.enable = true;
 
@@ -14,7 +20,7 @@
   
   # Kubernetes (k3s)
   services.k3s = {
-    enable = true;
+    enable = false;
     role = "server";
     extraFlags = toString [
       "--write-kubeconfig-mode 644" # Allow non-root access to kubeconfig
