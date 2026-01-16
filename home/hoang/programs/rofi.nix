@@ -165,7 +165,7 @@ in
     plugins = [ pkgs.rofi-calc pkgs.rofi-emoji ];
     location = "center";
     terminal = "${pkgs.kitty}/bin/kitty";
-    theme = rofiTheme;
+    theme = "${rofiTheme}";
     extraConfig = {
       show-icons = true;
       modi = "drun,run,window,calc,emoji";
