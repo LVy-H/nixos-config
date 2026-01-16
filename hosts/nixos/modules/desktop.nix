@@ -68,7 +68,13 @@ in
       qtvirtualkeyboard
     ];
   };
-  services.displayManager.sessionPackages = [ pkgs.swayfx ];
+
+  # Enable Sway via the official module for better system integration (PAM, Polkit, etc.)
+  programs.sway = {
+    enable = true;
+    package = pkgs.swayfx;
+    wrapperFeatures.gtk = true; # Helps with GTK apps in Sway
+  };
 
   # Services
   services.gvfs.enable = true; # Mount, trash, and other functionalities

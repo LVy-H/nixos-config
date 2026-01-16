@@ -11,7 +11,7 @@
     ./modules/desktop.nix
     ./modules/virtualization.nix
     ./modules/user.nix
-    ./modules/nvidia.nix
+
   ];
 
   fileSystems."/mnt/Data" = {
@@ -31,8 +31,10 @@
   programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
-    gamescopeSession.enable = true;
+    gamescopeSession.enable = false; # Fix login loop
   };
+  
+  services.tlp.enable = true;
 
   # Stylix Theming
   stylix = {

@@ -7,6 +7,9 @@
     networkmanager-openvpn
   ];
 
+  # Don't wait for network to be online at boot (speeds up startup significantly)
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   networking.firewall = {
     enable = true;
     trustedInterfaces = [ "docker0" ];
