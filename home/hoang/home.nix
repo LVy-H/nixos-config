@@ -25,7 +25,7 @@
     sessionVariables = {
       ANDROID_HOME = "$HOME/Android/Sdk";
       ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
-      JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
+      # JAVA_HOME handled by direnv per project
     };
 
     sessionPath = [
@@ -65,13 +65,6 @@
     # Modern CLI Tools
     distrobox       # Container tool
     gemini-cli      # Gemini AI CLI
-    nodejs_22
-    corepack_22
-    jdk21           # Java Development Kit
-    gradle          # Build tool
-    kotlin          # Kotlin language
-    kotlin-language-server # Kotlin LSP
-    ktlint          # Kotlin linter
     dust            # dust (better du)
     duf             # duf (better df)
     procs           # procs (better ps)
@@ -120,6 +113,12 @@
   };
 
   programs.home-manager.enable = true;
+
+  # Project Management
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   programs.wardex = {
     enable = true;

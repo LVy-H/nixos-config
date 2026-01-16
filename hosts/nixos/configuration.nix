@@ -27,6 +27,13 @@
   # OpenSSH
   services.openssh.enable = true;
 
+  # Gaming
+  programs.gamemode.enable = true;
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
+
   # Stylix Theming
   stylix = {
     enable = true;
@@ -69,6 +76,10 @@
       serif = {
         package = pkgs.noto-fonts;
         name = "Noto Serif";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
       };
       sizes = {
         applications = 11;

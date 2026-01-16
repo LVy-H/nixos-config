@@ -10,9 +10,21 @@ let
     ".." = "cd ..";
     "..." = "cd ../..";
     
-    # Modern CLI Replacements - Handled via initExtra for safety
-    
-    # New Fancy Tools - Handled via initExtra for safety
+    # Modern CLI Replacements
+    cat = "bat";
+    ls = "eza --icons --group-directories-first";
+    ll = "eza -lh --icons --group-directories-first --git";
+    la = "eza -lah --icons --group-directories-first --git";
+    tree = "eza --tree --icons";
+    find = "fd";
+    grep = "rg";
+    du = "dust";
+    ps = "procs";
+    df = "duf";
+    ff = "fastfetch";
+    md = "glow";
+    ra = "yazi";
+    ze = "zellij";
     
     # Archives
     x = "ouch decompress";
@@ -24,34 +36,13 @@ let
     gc = "git commit";
     gp = "git push";
   };
-  
-  # Safe alias generator for hybrid environments (Host vs Distrobox)
-  safeAliases = ''
-    # Only alias if the tool exists
-    if command -v bat &> /dev/null; then alias cat="bat"; fi
-    if command -v eza &> /dev/null; then 
-      alias ls="eza --icons --group-directories-first"
-      alias ll="eza -lh --icons --group-directories-first --git"
-      alias la="eza -lah --icons --group-directories-first --git"
-      alias tree="eza --tree --icons"
-    fi
-    if command -v fd &> /dev/null; then alias find="fd"; fi
-    if command -v rg &> /dev/null; then alias grep="rg"; fi
-    if command -v dust &> /dev/null; then alias du="dust"; fi
-    if command -v procs &> /dev/null; then alias ps="procs"; fi
-    if command -v duf &> /dev/null; then alias df="duf"; fi
-    if command -v fastfetch &> /dev/null; then alias ff="fastfetch"; fi
-    if command -v glow &> /dev/null; then alias md="glow"; fi
-    if command -v yazi &> /dev/null; then alias ra="yazi"; fi
-    if command -v zellij &> /dev/null; then alias ze="zellij"; fi
-  '';
 in
 {
   programs.bash = {
     enable = true;
     enableCompletion = true;
     shellAliases = myAliases;
-    initExtra = safeAliases + ''
+    initExtra = ''
       if command -v zoxide &> /dev/null; then eval "$(zoxide init bash --cmd cd)"; fi
     '';
   };
@@ -64,7 +55,7 @@ in
     enableVteIntegration = true;
     
     shellAliases = myAliases;
-    initContent = safeAliases + ''
+    initExtra = ''
       if command -v zoxide &> /dev/null; then eval "$(zoxide init zsh --cmd cd)"; fi
     '';
     

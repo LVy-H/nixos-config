@@ -17,8 +17,8 @@
     # Power management settings
     # experimental power management for "modern" GPUs (Turing or newer).
     # This acts as "Optim" for Linux, turning off the dGPU when not in use.
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    powerManagement.enable = true;
+    powerManagement.finegrained = false; # Requires Offload mode
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
