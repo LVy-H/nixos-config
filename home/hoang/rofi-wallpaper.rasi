@@ -1,0 +1,88 @@
+/* Rofi Wallpaper Picker Theme */
+
+* {
+    bg-col:  #1e1e2e;
+    selected-col: #89b4fa;
+    border-col: #89b4fa;
+    fg-col: #cdd6f4;
+    
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+element-text, element-icon, mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    height: 80%;
+    width: 80%;
+    border: 3px;
+    border-color: @border-col;
+    background-color: @bg-col;
+    border-radius: 12px;
+}
+
+mainbox {
+    background-color: @bg-col;
+    children: [inputbar, listview];
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: @bg-col;
+    padding: 20px;
+    margin: 10px;
+}
+
+prompt {
+    enabled: true;
+    padding: 10px;
+    background-color: @selected-col;
+    text-color: @bg-col;
+    border-radius: 6px;
+    margin: 0px 10px 0px 0px;
+}
+
+entry {
+    padding: 10px;
+    text-color: @fg-col;
+    background-color: #313244;
+    border-radius: 6px;
+}
+
+listview {
+    columns: 4;
+    lines: 3;
+    spacing: 20px;
+    padding: 20px;
+    background-color: @bg-col;
+}
+
+element {
+    orientation: vertical;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #313244;
+    text-color: @fg-col;
+}
+
+element selected {
+    background-color: @selected-col;
+    text-color: @bg-col;
+    border: 2px;
+    border-color: #cdd6f4;
+}
+
+element-icon {
+    size: 200px;
+    horizontal-align: 0.5;
+    background-color: transparent;
+}
+
+element-text {
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    background-color: transparent;
+    padding: 10px 0px 0px 0px;
+}
