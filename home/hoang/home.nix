@@ -64,6 +64,15 @@ in
   # --- Core Programs ---
 
   # Terminal
+  programs.ghostty = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      theme = "catppuccin-mocha";
+      window-decoration = false;
+    };
+  };
+
   programs.kitty = {
     enable = true;
     settings = {
@@ -252,7 +261,7 @@ in
     nautilus mission-center easyeffects swayosd
   
     # Apps
-    google-chrome firefox discord spotify wpsoffice telegram-desktop burpsuite obsidian
+    google-chrome firefox discord spotify  telegram-desktop obsidian
     pavucontrol
     
     # Utils

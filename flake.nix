@@ -15,6 +15,10 @@
       url = "github:LVy-H/project_manager_cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-topology = {
+      url = "github:oddlama/nix-topology";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix.url = "github:danth/stylix";
   };
 
@@ -27,6 +31,7 @@
           ./hosts/nixos/configuration.nix
           nixvim.nixosModules.nixvim
           stylix.nixosModules.stylix
+          inputs.nix-topology.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

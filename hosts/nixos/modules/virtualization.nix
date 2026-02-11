@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = false;
+  programs.virt-manager.enable = false;
 
   virtualisation.podman.enable = true;
 
@@ -14,9 +14,9 @@
     };
   };
 
-  virtualisation.waydroid.enable = true;
+  virtualisation.waydroid.enable = false;
 
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enable = false;
   
   # Kubernetes (k3s)
   services.k3s = {
@@ -28,8 +28,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    android-studio
-    android-tools
+    
     qemu
     OVMF
   ]; # Add distrobox if needed, though it's in home.nix usually

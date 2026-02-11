@@ -24,6 +24,6 @@
     kubectx
     
     # Mobile
-    android-tools
+    
   ];
 }
