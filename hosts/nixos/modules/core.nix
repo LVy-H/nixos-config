@@ -46,11 +46,6 @@
     vim
     nh # Nix Helper
     gcc
-    gdb
-    clang
-    lldb
-    binutils
-    kind
   ];
 
   # Power Management

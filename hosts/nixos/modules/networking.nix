@@ -15,11 +15,9 @@
     trustedInterfaces = [ "docker0" ];
     allowedTCPPorts = [ 
       57621 # Spotify Connect
-      6443  # k3s: Kubernetes API Server
     ];
     allowedUDPPorts = [ 
       5353  # mDNS / Spotify Discovery
-      8472  # k3s: Flannel VXLAN
     ];
   };
 

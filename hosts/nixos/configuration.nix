@@ -20,18 +20,9 @@
     options = [ "rw" "uid=1000" "gid=100" "nofail" "x-systemd.automount" "x-systemd.idle-timeout=600" ];
   };
 
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/8e58b41c-e942-407a-9bb5-64e3b8c343b2"; }
-  ];
-
   # Performance Optimizations
   zramSwap.enable = true;
   services.fstrim.enable = true;
-  
-  nix.settings = {
-    auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
-  };
 
   environment.variables.FLAKE = "/etc/nixos";
   programs.nh = {
@@ -51,8 +42,6 @@
     gamescopeSession.enable = false; # Fix login loop
   };
   
-  services.tlp.enable = true;
-
   # Android / Mobile - ADB is handled by systemd 258+ uaccess, just need the package
 
 

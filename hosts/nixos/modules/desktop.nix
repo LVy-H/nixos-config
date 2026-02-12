@@ -23,14 +23,14 @@ in
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
-    open = false; # Use proprietary drivers for better compatibility
+    open = true; # Open kernel modules (default for 555+, supports Turing and newer)
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    WLR_NO_HARDWARE_CURSORS = "1";
+    WLR_NO_HARDWARE_CURSORS = "1"; # TODO: Remove when SwayFX rebases on Sway 1.10+ (wlroots 0.18+ fixes this via Explicit Sync)
   };
 
   # Audio (PipeWire)
@@ -99,16 +99,6 @@ in
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
   services.udisks2.enable = true; # Storage management
-  
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs; [
-      thunar-archive-plugin
-      thunar-volman
-      thunar-media-tags-plugin
-    ];
-  };
-  programs.xfconf.enable = true; # Thunar settings storage
   
   services.libinput.enable = true;
   services.touchegg.enable = true;
