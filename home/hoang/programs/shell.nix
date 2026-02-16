@@ -140,9 +140,19 @@ in
   programs.fd.enable = true;
   programs.tealdeer = { enable = true; settings.updates.auto_update = true; };
   programs.fzf = { enable = true; enableBashIntegration = true; enableZshIntegration = true; };
+  programs.btop = { enable = true; settings = { color_theme = "catppuccin_mocha"; }; };
+  programs.fastfetch.enable = true;
 
   # --- File Manager & Multiplexer ---
 
   programs.yazi = { enable = true; enableBashIntegration = true; enableZshIntegration = true; settings.manager = { show_hidden = true; sort_dir_first = true; }; };
   programs.zellij = { enable = true; enableBashIntegration = false; };
+
+  # --- Extra CLI Tools ---
+  home.packages = with pkgs; [
+    distrobox boxbuddy gemini-cli dust duf procs glow
+    zip xz unzip p7zip ouch
+    jq yq-go
+    (azure-cli.withExtensions [ azure-cli-extensions.ssh ])
+  ];
 }

@@ -1,8 +1,11 @@
 { pkgs, ... }:
 
 {
-  virtualisation.libvirtd.enable = false;
-  programs.virt-manager.enable = false;
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["hoang"];
+
+  virtualisation.spiceUSBRedirection.enable = true;
 
   virtualisation.podman.enable = true;
 
@@ -14,12 +17,7 @@
     };
   };
 
-  virtualisation.waydroid.enable = false;
 
-  virtualisation.virtualbox.host.enable = false;
+  virtualisation.waydroid.enable = false;
   
-  environment.systemPackages = with pkgs; [
-    qemu
-    OVMF
-  ];
 }

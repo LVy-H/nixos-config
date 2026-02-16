@@ -8,6 +8,7 @@
     ./programs/shell.nix
     ./programs/rofi.nix
     ./programs/services.nix
+    ./programs/browsers.nix
   ];
 
   home = {
@@ -39,22 +40,18 @@
     swappy autotiling-rs wdisplays swaybg
 
     # GUI Apps
-    nautilus mission-center easyeffects
-    google-chrome firefox discord spotify telegram-desktop obsidian
+    nautilus mission-center
+    discord spotify telegram-desktop obsidian
     pavucontrol
 
     # Utils
-    playerctl antigravity-fhs libnotify wev btop brightnessctl
-    libinput pulseaudio ncdu scrcpy sway-audio-idle-inhibit
+    playerctl antigravity-fhs libnotify wev brightnessctl
+    scrcpy sway-audio-idle-inhibit
     (pkgs.tesseract.override { enableLanguages = [ "eng" "vie" "chi_sim" "chi_tra" "jpn" ]; })
     imagemagick
 
     # CLI
-    distrobox boxbuddy gemini-cli dust duf procs fastfetch glow
-    zip xz unzip p7zip ouch
-    jq yq-go
     wl-clipboard wf-recorder grim slurp
     polkit_gnome font-awesome
-    (azure-cli.withExtensions [ azure-cli-extensions.ssh ])
   ];
 }

@@ -4,7 +4,7 @@
   users.users.hoang = {
     isNormalUser = true;
     description = "hoang";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" "kvm" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "kvm" "adbusers" "libvirt" ];
     shell = pkgs.zsh;
   };
 

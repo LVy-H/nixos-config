@@ -30,7 +30,6 @@ in
   
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    WLR_NO_HARDWARE_CURSORS = "1"; # TODO: Remove when SwayFX rebases on Sway 1.10+ (wlroots 0.18+ fixes this via Explicit Sync)
   };
 
   # Audio (PipeWire)
@@ -41,16 +40,7 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-    wireplumber.extraConfig = {
-      "10-bluez" = {
-        "monitor.bluez.properties" = {
-          "bluez5.enable-sbc-xq" = true;
-          "bluez5.enable-msbc" = true;
-          "bluez5.enable-hw-volume" = true;
-          "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
-        };
-      };
-    };
+    wireplumber.enable = true;
   };
 
   # Input Method
