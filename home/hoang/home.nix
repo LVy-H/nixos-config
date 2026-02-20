@@ -6,7 +6,7 @@
     ./programs/sway.nix
     ./programs/nixvim.nix
     ./programs/shell.nix
-    ./programs/rofi.nix
+    ./programs/rofi
     ./programs/services.nix
     ./programs/browsers.nix
   ];

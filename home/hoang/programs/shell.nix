@@ -140,7 +140,7 @@ in
   programs.fd.enable = true;
   programs.tealdeer = { enable = true; settings.updates.auto_update = true; };
   programs.fzf = { enable = true; enableBashIntegration = true; enableZshIntegration = true; };
-  programs.btop = { enable = true; settings = { color_theme = "catppuccin_mocha"; }; };
+  programs.btop = { enable = true; };
   programs.fastfetch.enable = true;
 
   # --- File Manager & Multiplexer ---

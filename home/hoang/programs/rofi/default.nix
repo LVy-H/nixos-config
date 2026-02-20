@@ -7,7 +7,7 @@
   programs.rofi = {
     enable = true;
     package = pkgs.rofi;
-    theme = ../rofi-spotlight.rasi;
+    theme = ./rofi-spotlight.rasi;
     plugins = [ pkgs.rofi-calc pkgs.rofi-emoji ];
     terminal = "${pkgs.kitty}/bin/kitty";
     extraConfig = {
@@ -70,7 +70,7 @@
       find "$WALL_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" -o -iname "*.webp" \) | sort | while read -r img_path; do
         img_name=$(basename "$img_path")
         echo -en "$img_name\0icon\x1f$img_path\n"
-      done | ${pkgs.rofi}/bin/rofi -dmenu -theme ${../rofi-wallpaper.rasi} -p "Wallpaper" | while read -r selected; do
+      done | ${pkgs.rofi}/bin/rofi -dmenu -theme ${./rofi-wallpaper.rasi} -p "Wallpaper" | while read -r selected; do
         if [ -n "$selected" ]; then
            full_path=$(find "$WALL_DIR" -name "$selected" | head -n 1)
            if [ -n "$full_path" ]; then
@@ -102,7 +102,7 @@
         else
           echo "$line"
         fi
-      done | ${pkgs.rofi}/bin/rofi -dmenu -theme ${../rofi-clipboard.rasi} -p "Clipboard" | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
+      done | ${pkgs.rofi}/bin/rofi -dmenu -theme ${./rofi-clipboard.rasi} -p "Clipboard" | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
     '')
 
     # Image-only clipboard viewer with large previews
@@ -124,7 +124,7 @@
         if [ -s "$img_file" ]; then
           echo -en "$id\0icon\x1f$img_file\n"
         fi
-      done | ${pkgs.rofi}/bin/rofi -dmenu -theme ${../rofi-wallpaper.rasi} -p "Images" | while read -r selected_id; do
+      done | ${pkgs.rofi}/bin/rofi -dmenu -theme ${./rofi-wallpaper.rasi} -p "Images" | while read -r selected_id; do
         if [ -n "$selected_id" ]; then
           ${pkgs.cliphist}/bin/cliphist decode "$selected_id" | ${pkgs.wl-clipboard}/bin/wl-copy
           ${pkgs.libnotify}/bin/notify-send "Clipboard" "Image copied!"
