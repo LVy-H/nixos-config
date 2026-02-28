@@ -19,27 +19,15 @@ let
     find = "fd";
     grep = "rg";
     du = "dust";
-    ps = "procs";
-    df = "duf";
-    ff = "fastfetch";
     md = "glow";
-    ra = "yazi";
     ze = "zellij";
     
-    # Archives
     x = "ouch decompress";
     xx = "ouch compress";
     
-    # Git
-    gs = "git status";
-    ga = "git add";
-    gc = "git commit";
-    gp = "git push";
   };
 in
 {
-  # --- Terminal Emulators ---
-  # kitty = primary, ghostty = fallback
 
   programs.kitty = {
     enable = true;
@@ -153,6 +141,5 @@ in
     distrobox boxbuddy gemini-cli dust duf procs glow
     zip xz unzip p7zip ouch
     jq yq-go
-    (azure-cli.withExtensions [ azure-cli-extensions.ssh ])
   ];
 }
