@@ -17,7 +17,9 @@
       };
       workspaceAutoBackAndForth = true;
       bars = [];
-      
+
+      focus.mouseWarping = "container";
+
       keybindings = let
         modifier = "Mod4";
       in lib.mkOptionDefault {
@@ -64,7 +66,6 @@
         "${modifier}+Shift+e" = "exec wlogout";
         
         # Scratchpad
-        # Scratchpad
         "${modifier}+Shift+minus" = "move scratchpad";
         "${modifier}+minus" = "scratchpad show";
         
@@ -75,7 +76,6 @@
         "${modifier}+c" = "exec rofi -show calc -modi calc -no-show-match -no-sort";
         "${modifier}+period" = "exec rofi -show emoji";
 
-        # Layouts
         # Layouts
         "${modifier}+w" = "layout tabbed";
         "${modifier}+s" = "layout stacking";
@@ -168,21 +168,18 @@
       };
 
       # Window borders
-      window.border = 0; # Handled via extraConfig for precision
-      window.titlebar = false;
+      window.border = 2;
+      floating.border = 2;
+      window.titlebar =Document false;
     };
     
     extraConfig = ''
       # Usability Focus
       focus_on_window_activation focus
-      mouse_warping container
       popup_during_fullscreen smart
       
       # Visuals
       default_dim_inactive 0.1
-      
-      default_border pixel 2
-      default_floating_border pixel 2
       
       # Gestures
       bindgesture swipe:3:right workspace prev

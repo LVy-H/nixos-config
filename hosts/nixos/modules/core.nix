@@ -27,6 +27,11 @@
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
   };
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
 
 
   nixpkgs.config.allowUnfree = true;
@@ -50,4 +55,15 @@
 
   # Power Management
   services.tlp.enable = true;
+  services.thermald.enable = true;
+
+  # Firmware Updates
+  services.fwupd.enable = true;
+
+  # Binary Compatibility
+  programs.nix-ld.enable = true;
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 }

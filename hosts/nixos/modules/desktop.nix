@@ -21,9 +21,9 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = true; # Open kernel modules (default for 555+, supports Turing and newer)
+    powerManagement.enable = true;
+    powerManagement.finegrained = false;  # Requires PRIME offload mode
+    open = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };

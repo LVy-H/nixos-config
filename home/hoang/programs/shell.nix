@@ -74,7 +74,6 @@ in
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "sudo" "docker" "colored-man-pages" "command-not-found" ];
-      theme = "robbyrussell";
     };
   };
 
