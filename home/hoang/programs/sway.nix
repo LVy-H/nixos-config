@@ -170,7 +170,7 @@
       # Window borders
       window.border = 2;
       floating.border = 2;
-      window.titlebar =Document false;
+      window.titlebar = false;
     };
     
     extraConfig = ''

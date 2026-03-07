@@ -18,6 +18,7 @@
   };
 
 
-  virtualisation.waydroid.enable = false;
-  
+  virtualisation.waydroid.enable = false; 
+
+  virtualisation.incus.enable = true;  
 }

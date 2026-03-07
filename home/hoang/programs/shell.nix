@@ -132,7 +132,7 @@ in
 
   # --- File Manager & Multiplexer ---
 
-  programs.yazi = { enable = true; enableBashIntegration = true; enableZshIntegration = true; settings.manager = { show_hidden = true; sort_dir_first = true; }; };
+  programs.yazi = { enable = true; enableBashIntegration = true; enableZshIntegration = true; shellWrapperName = "y"; settings.manager = { show_hidden = true; sort_dir_first = true; }; };
   programs.zellij = { enable = true; enableBashIntegration = false; };
 
   # --- Extra CLI Tools ---

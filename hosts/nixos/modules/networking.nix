@@ -6,13 +6,14 @@
   networking.networkmanager.plugins = with pkgs; [
     networkmanager-openvpn
   ];
+  networking.nftables.enable = true;
 
   # Don't wait for network to be online at boot (speeds up startup significantly)
   systemd.services.NetworkManager-wait-online.enable = false;
 
   networking.firewall = {
     enable = true;
-    trustedInterfaces = [ "docker0" ];
+    trustedInterfaces = [ "docker0" "incusbr0" ];
     allowedTCPPorts = [ 
       57621 # Spotify Connect
     ];
@@ -28,13 +29,7 @@
     internalInterfaces = [ "docker0" ];
   };
 
-  # Fix MTU issues (MSS Clamping) & Allow NAT on other interfaces
-  networking.firewall.extraCommands = ''
-    iptables -t mangle -A POSTROUTING -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-    # Enable masquerading for other potential uplinks (Tethering, Warp)
-    iptables -t nat -A POSTROUTING -o enp0s20f0u2 -j MASQUERADE
-    iptables -t nat -A POSTROUTING -o CloudflareWARP -j MASQUERADE
-  '';
+  networking.extraHosts = "10.171.242.4 ceph1";
 
   # Network tools
   environment.systemPackages = with pkgs; [
@@ -63,9 +58,4 @@
     };
   };
   services.blueman.enable = true;
-  
-  # Fix for Intel Bluetooth/WiFi coexistence
-  boot.extraModprobeConfig = ''
-    options iwlwifi bt_coex_active=0
-  '';
 }
