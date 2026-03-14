@@ -1,15 +1,20 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   myAliases = {
     # NixOS
     nos = "sudo nixos-rebuild switch --flake .#nixos";
     not = "sudo nixos-rebuild test --flake .#nixos";
-    
+
     # Navigation
     ".." = "cd ..";
     "..." = "cd ../..";
-    
+
     # Modern CLI
     cat = "bat";
     ls = "eza --icons --group-directories-first";
@@ -21,10 +26,10 @@ let
     du = "dust";
     md = "glow";
     ze = "zellij";
-    
+
     x = "ouch decompress";
     xx = "ouch compress";
-    
+
   };
 in
 {
@@ -32,8 +37,8 @@ in
   programs.kitty = {
     enable = true;
     settings = {
-        window_padding_width = 4;
-        shell_integration = "no-cursor";
+      window_padding_width = 4;
+      shell_integration = "no-cursor";
     };
   };
 
@@ -68,12 +73,18 @@ in
       if command -v zoxide &> /dev/null; then eval "$(zoxide init zsh --cmd cd)"; fi
     '';
     history = {
-        size = 10000;
-        path = "$HOME/.zsh_history";
+      size = 10000;
+      path = "$HOME/.zsh_history";
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "sudo" "docker" "colored-man-pages" "command-not-found" ];
+      plugins = [
+        "git"
+        "sudo"
+        "docker"
+        "colored-man-pages"
+        "command-not-found"
+      ];
     };
   };
 
@@ -120,25 +131,71 @@ in
   # --- Modern CLI Tools ---
 
   programs.bat.enable = true;
-  programs.eza = { enable = true; enableBashIntegration = false; enableZshIntegration = false; };
-  programs.zoxide = { enable = true; enableBashIntegration = false; enableZshIntegration = false; };
-  programs.atuin = { enable = true; enableBashIntegration = true; enableZshIntegration = true; settings.style = "compact"; settings.auto_sync = false; };
+  programs.eza = {
+    enable = true;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
+  };
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
+  };
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    settings.style = "compact";
+    settings.auto_sync = false;
+  };
   programs.ripgrep.enable = true;
   programs.fd.enable = true;
-  programs.tealdeer = { enable = true; settings.updates.auto_update = true; };
-  programs.fzf = { enable = true; enableBashIntegration = true; enableZshIntegration = true; };
-  programs.btop = { enable = true; };
+  programs.tealdeer = {
+    enable = true;
+    settings.updates.auto_update = true;
+  };
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+  programs.btop = {
+    enable = true;
+  };
   programs.fastfetch.enable = true;
 
   # --- File Manager & Multiplexer ---
 
-  programs.yazi = { enable = true; enableBashIntegration = true; enableZshIntegration = true; shellWrapperName = "y"; settings.manager = { show_hidden = true; sort_dir_first = true; }; };
-  programs.zellij = { enable = true; enableBashIntegration = false; };
+  programs.yazi = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    shellWrapperName = "y";
+    settings.manager = {
+      show_hidden = true;
+      sort_dir_first = true;
+    };
+  };
+  programs.zellij = {
+    enable = true;
+    enableBashIntegration = false;
+  };
 
   # --- Extra CLI Tools ---
   home.packages = with pkgs; [
-    distrobox boxbuddy gemini-cli dust duf procs glow
-    zip xz unzip p7zip ouch
-    jq yq-go
+    distrobox
+    boxbuddy
+    gemini-cli
+    dust
+    duf
+    procs
+    glow
+    zip
+    xz
+    unzip
+    p7zip
+    ouch
+    jq
+    yq-go
   ];
 }

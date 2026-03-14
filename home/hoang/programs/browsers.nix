@@ -4,7 +4,7 @@
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
-    
+
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
@@ -32,13 +32,13 @@
         "browser.startup.homepage" = "about:blank";
         "browser.search.defaultenginename" = "Google";
         "browser.search.order.1" = "Google";
-        
+
         "signon.rememberSignons" = false;
         "widget.use-xdg-desktop-portal.file-picker" = 1;
         "browser.aboutConfig.showWarning" = false;
         "browser.compactmode.show" = true;
         "browser.cache.disk.enable" = false; # Be kind to SSD?
-        
+
         # Look and feel
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.toolbars.bookmarks.visibility" = "never";

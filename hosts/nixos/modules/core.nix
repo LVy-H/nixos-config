@@ -24,18 +24,24 @@
 
   # Nix Settings
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     auto-optimise-store = true;
   };
 
-
-
   nixpkgs.config.allowUnfree = true;
-  
+
   nix.package = pkgs.lixPackageSets.stable.lix;
   nixpkgs.overlays = [
     (final: prev: {
-      inherit (prev.lixPackageSets.stable) nixpkgs-review nix-eval-jobs nix-fast-build colmena;
+      inherit (prev.lixPackageSets.stable)
+        nixpkgs-review
+        nix-eval-jobs
+        nix-fast-build
+        colmena
+        ;
     })
   ];
 
@@ -63,3 +69,4 @@
     binfmt = true;
   };
 }
+

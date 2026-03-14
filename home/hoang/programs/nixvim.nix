@@ -30,7 +30,6 @@
       updatetime = 100;
     };
 
-
     # Plugins
     plugins = {
       lualine.enable = true;
@@ -50,7 +49,7 @@
           ];
         };
       };
-      
+
       which-key = {
         enable = true;
       };
@@ -64,7 +63,7 @@
       neo-tree = {
         enable = true;
         settings = {
-            close_if_last_window = true;
+          close_if_last_window = true;
         };
       };
 
@@ -101,7 +100,10 @@
           };
           formatters_by_ft = {
             nix = [ "nixfmt" ];
-            python = [ "black" "isort" ];
+            python = [
+              "black"
+              "isort"
+            ];
             go = [ "gofmt" ];
             bash = [ "shfmt" ];
             "_" = [ "trim_whitespace" ];
@@ -116,21 +118,51 @@
           pyright.enable = true;
           gopls.enable = true;
           bashls.enable = true;
+          clangd.enable = true;
+          basedpyright.enable = true;
+          ruff.enable = true;
         };
         keymaps = {
           silent = true;
           diagnostic = {
-            "<leader>j" = { action = "goto_next"; desc = "Next Diagnostic"; };
-            "<leader>k" = { action = "goto_prev"; desc = "Prev Diagnostic"; };
+            "<leader>j" = {
+              action = "goto_next";
+              desc = "Next Diagnostic";
+            };
+            "<leader>k" = {
+              action = "goto_prev";
+              desc = "Prev Diagnostic";
+            };
           };
           lspBuf = {
-            K = { action = "hover"; desc = "Hover"; };
-            gd = { action = "definition"; desc = "Go to Definition"; };
-            gD = { action = "declaration"; desc = "Go to Declaration"; };
-            gr = { action = "references"; desc = "References"; };
-            gi = { action = "implementation"; desc = "Implementation"; };
-            "<leader>rn" = { action = "rename"; desc = "Rename"; };
-            "<leader>ca" = { action = "code_action"; desc = "Code Action"; };
+            K = {
+              action = "hover";
+              desc = "Hover";
+            };
+            gd = {
+              action = "definition";
+              desc = "Go to Definition";
+            };
+            gD = {
+              action = "declaration";
+              desc = "Go to Declaration";
+            };
+            gr = {
+              action = "references";
+              desc = "References";
+            };
+            gi = {
+              action = "implementation";
+              desc = "Implementation";
+            };
+            "<leader>rn" = {
+              action = "rename";
+              desc = "Rename";
+            };
+            "<leader>ca" = {
+              action = "code_action";
+              desc = "Code Action";
+            };
           };
         };
       };
@@ -138,7 +170,7 @@
       # Snippet engine
       luasnip = {
         enable = true;
-        fromVscode = [{}];
+        fromVscode = [ { } ];
       };
       friendly-snippets.enable = true;
 
@@ -161,12 +193,12 @@
           ];
         };
       };
-      
+
       gitsigns.enable = true;
       lazygit.enable = true;
-      
+
       nvim-autopairs.enable = true;
-      
+
       indent-blankline = {
         enable = true;
         settings = {
@@ -201,8 +233,14 @@
         enable = true;
         settings = {
           delay = 200;
-          providers = [ "lsp" "treesitter" ];
-          filetypes_denylist = [ "neo-tree" "TelescopePrompt" ];
+          providers = [
+            "lsp"
+            "treesitter"
+          ];
+          filetypes_denylist = [
+            "neo-tree"
+            "TelescopePrompt"
+          ];
           under_cursor = true;
           min_count_to_highlight = 2;
         };
@@ -229,21 +267,71 @@
         };
       };
     };
-    
+
     # Keymaps (Space as leader)
     globals.mapleader = " ";
     keymaps = [
-      { mode = "n"; key = "<leader>e"; action = "<cmd>Neotree toggle<CR>"; options.desc = "Toggle Explorer"; }
-      { mode = "n"; key = "<leader>ff"; action = "<cmd>Telescope find_files<CR>"; options.desc = "Find Files"; }
-      { mode = "n"; key = "<leader>fg"; action = "<cmd>Telescope live_grep<CR>"; options.desc = "Grep Files"; }
-      { mode = "n"; key = "<leader>b"; action = "<cmd>Telescope buffers<CR>"; options.desc = "Find Buffers"; }
-      { mode = "n"; key = "<leader>x"; action = "<cmd>Trouble diagnostics toggle<CR>"; options.desc = "Diagnostics (Trouble)"; }
-      { mode = "n"; key = "<leader>t"; action = "<cmd>TodoTelescope<CR>"; options.desc = "Find TODOs"; }
-      { mode = "n"; key = "<leader>li"; action = "<cmd>LoremIpsum paragraphs 1<CR>"; options.desc = "Insert Lorem Ipsum"; }
+      {
+        mode = "n";
+        key = "<leader>e";
+        action = "<cmd>Neotree toggle<CR>";
+        options.desc = "Toggle Explorer";
+      }
+      {
+        mode = "n";
+        key = "<leader>ff";
+        action = "<cmd>Telescope find_files<CR>";
+        options.desc = "Find Files";
+      }
+      {
+        mode = "n";
+        key = "<leader>fg";
+        action = "<cmd>Telescope live_grep<CR>";
+        options.desc = "Grep Files";
+      }
+      {
+        mode = "n";
+        key = "<leader>b";
+        action = "<cmd>Telescope buffers<CR>";
+        options.desc = "Find Buffers";
+      }
+      {
+        mode = "n";
+        key = "<leader>x";
+        action = "<cmd>Trouble diagnostics toggle<CR>";
+        options.desc = "Diagnostics (Trouble)";
+      }
+      {
+        mode = "n";
+        key = "<leader>t";
+        action = "<cmd>TodoTelescope<CR>";
+        options.desc = "Find TODOs";
+      }
+      {
+        mode = "n";
+        key = "<leader>li";
+        action = "<cmd>LoremIpsum paragraphs 1<CR>";
+        options.desc = "Insert Lorem Ipsum";
+      }
       # Buffer navigation
-      { mode = "n"; key = "<S-h>"; action = "<cmd>BufferLineCyclePrev<cr>"; options.desc = "Prev Buffer"; }
-      { mode = "n"; key = "<S-l>"; action = "<cmd>BufferLineCycleNext<cr>"; options.desc = "Next Buffer"; }
-      { mode = "n"; key = "<leader>bd"; action = "<cmd>bdelete<cr>"; options.desc = "Close Buffer"; }
+      {
+        mode = "n";
+        key = "<S-h>";
+        action = "<cmd>BufferLineCyclePrev<cr>";
+        options.desc = "Prev Buffer";
+      }
+      {
+        mode = "n";
+        key = "<S-l>";
+        action = "<cmd>BufferLineCycleNext<cr>";
+        options.desc = "Next Buffer";
+      }
+      {
+        mode = "n";
+        key = "<leader>bd";
+        action = "<cmd>bdelete<cr>";
+        options.desc = "Close Buffer";
+      }
     ];
   };
 }

@@ -13,7 +13,7 @@
 
   networking.firewall = {
     enable = true;
-    trustedInterfaces = [ "docker0" "incusbr0" ];
+    trustedInterfaces = [ "docker0" "incusbr0" "virbr0" ];
     allowedTCPPorts = [ 
       57621 # Spotify Connect
     ];

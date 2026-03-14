@@ -22,12 +22,12 @@ in
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
-    powerManagement.finegrained = false;  # Requires PRIME offload mode
+    powerManagement.finegrained = false; # Requires PRIME offload mode
     open = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  
+
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
@@ -89,13 +89,13 @@ in
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
   services.udisks2.enable = true; # Storage management
-  
+
   services.libinput.enable = true;
   services.touchegg.enable = true;
   services.gnome.gnome-keyring.enable = true;
-  
+
   # Fonts
-  fonts.packages = with pkgs; [ 
+  fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     font-awesome
     noto-fonts
@@ -103,14 +103,15 @@ in
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
     material-design-icons
+    google-fonts
   ];
 
   # Security
-  security.pam.services.swaylock = {};
-  
+  security.pam.services.swaylock = { };
+
   # System-wide programs
   programs.dconf.enable = true;
-  
+
   environment.systemPackages = [
     astronaut
     pkgs.nvtopPackages.nvidia

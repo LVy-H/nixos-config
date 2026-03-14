@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   # --- Launcher ---
@@ -8,12 +13,15 @@
     enable = true;
     package = pkgs.rofi;
     theme = ./rofi-spotlight.rasi;
-    plugins = [ pkgs.rofi-calc pkgs.rofi-emoji ];
+    plugins = [
+      pkgs.rofi-calc
+      pkgs.rofi-emoji
+    ];
     terminal = "${pkgs.kitty}/bin/kitty";
     extraConfig = {
-      modi = "combi,calc,emoji"; 
+      modi = "combi,calc,emoji";
       combi-modi = "drun,window";
-      show-icons = true; 
+      show-icons = true;
       drun-display-format = "{icon} {name}";
       display-combi = "Go";
     };
@@ -30,14 +38,20 @@
           "/run/current-system/sw/share/icons"
           "/run/current-system/sw/share/icons/hicolor/scalable/apps"
           "/run/current-system/sw/share/icons/hicolor/48x48/apps"
-          "${pkgs.adwaita-icon-theme}/share/icons" 
+          "${pkgs.adwaita-icon-theme}/share/icons"
           "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps"
           "/home/hoang/.local/share/icons"
         ];
       };
       menu = {
         executable = "${pkgs.rofi}/bin/rofi";
-        args = [ "-dmenu" "-p" "Window" "-markup-rows" "-no-show-icons" ]; 
+        args = [
+          "-dmenu"
+          "-p"
+          "Window"
+          "-markup-rows"
+          "-no-show-icons"
+        ];
       };
     };
   };
@@ -45,10 +59,12 @@
   # --- XDG Icons ---
 
   xdg.dataFile = {
-    "icons/network.cycles.wdisplays.svg".source = "${pkgs.wdisplays}/share/icons/hicolor/scalable/apps/network.cycles.wdisplays.svg";
+    "icons/network.cycles.wdisplays.svg".source =
+      "${pkgs.wdisplays}/share/icons/hicolor/scalable/apps/network.cycles.wdisplays.svg";
     "icons/swappy.svg".source = "${pkgs.swappy}/share/icons/hicolor/scalable/apps/swappy.svg";
-    "icons/antigravity.svg".source = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-    "icons/rofi.svg".source = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg"; 
+    "icons/antigravity.svg".source =
+      "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+    "icons/rofi.svg".source = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
     "icons/yazi.svg".source = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
   };
 
@@ -65,7 +81,7 @@
     (pkgs.writeShellScriptBin "rofi-wallpaper" ''
       WALL_DIR="$HOME/Pictures/Wallpapers"
       mkdir -p "$WALL_DIR"
-      
+
       # Recursive image scan with previews
       find "$WALL_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" -o -iname "*.webp" \) | sort | while read -r img_path; do
         img_name=$(basename "$img_path")
@@ -83,7 +99,7 @@
     (pkgs.writeShellScriptBin "rofi-clipboard" ''
       CACHE_DIR="/tmp/cliphist-thumbs"
       mkdir -p "$CACHE_DIR"
-      
+
       # Build rofi input with image thumbnails
       ${pkgs.cliphist}/bin/cliphist list | while IFS= read -r line; do
         id="''${line%% *}"
@@ -109,7 +125,7 @@
     (pkgs.writeShellScriptBin "rofi-clipboard-images" ''
       CACHE_DIR="/tmp/cliphist-images"
       mkdir -p "$CACHE_DIR"
-      
+
       # Extract images from clipboard history (cliphist marks them as "binary data ... png/jpg")
       ${pkgs.cliphist}/bin/cliphist list | grep -E "\[\[ binary data.*\]\]" | while IFS= read -r line; do
         id="''${line%% *}"

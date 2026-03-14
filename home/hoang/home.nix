@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -30,28 +36,60 @@
   # --- Core Programs ---
 
   programs.home-manager.enable = true;
-  programs.direnv = { enable = true; nix-direnv.enable = true; };
-  programs.wardex = { enable = true; settings.paths.workspace = "/mnt/Data/Workspace"; };
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+  programs.wardex = {
+    enable = true;
+    settings.paths.workspace = "/mnt/Data/Workspace";
+  };
 
   # --- Packages ---
 
   home.packages = with pkgs; [
     # Sway Tools
-    swappy autotiling-rs wdisplays swaybg
+    swappy
+    autotiling-rs
+    wdisplays
+    swaybg
 
     # GUI Apps
-    nautilus mission-center
-    discord spotify telegram-desktop obsidian
+    nautilus
+    mission-center
+    discord
+    spotify
+    telegram-desktop
+    obsidian
     pavucontrol
+    wpsoffice
 
     # Utils
-    playerctl antigravity-fhs libnotify wev brightnessctl
-    scrcpy sway-audio-idle-inhibit
-    (pkgs.tesseract.override { enableLanguages = [ "eng" "vie" "chi_sim" "chi_tra" "jpn" ]; })
+    playerctl
+    antigravity-fhs
+    libnotify
+    wev
+    brightnessctl
+    scrcpy
+    sway-audio-idle-inhibit
+    (pkgs.tesseract.override {
+      enableLanguages = [
+        "eng"
+        "vie"
+        "chi_sim"
+        "chi_tra"
+        "jpn"
+      ];
+    })
     imagemagick
+    nixfmt
 
     # CLI
-    wl-clipboard wf-recorder grim slurp
-    polkit_gnome font-awesome
+    wl-clipboard
+    wf-recorder
+    grim
+    slurp
+    polkit_gnome
+    font-awesome
   ];
 }
