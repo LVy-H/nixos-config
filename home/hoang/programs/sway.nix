@@ -97,6 +97,11 @@
           "${modifier}+l" =
             "exec swaylock -f --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color bb00cc --key-hl-color 880033";
 
+          # -- Terminal --
+          "${modifier}+Return" =
+            "exec swaymsg '[app_id=\"floating_term\"] scratchpad show' || kitty --app-id floating_term";
+          "${modifier}+Shift+Return" = "exec kitty";
+
           # -- Keyboard Oriented Apps --
           "${modifier}+Shift+f" = "exec nautilus"; # Files (Shift+f)
           "${modifier}+d" = "exec rofi -show drun"; # Launcher
@@ -170,6 +175,12 @@
           command = "floating enable, resize set 800 600, move position center";
           criteria = {
             app_id = "clipse";
+          };
+        }
+        {
+          command = "floating enable, resize set 1000 700, move scratchpad, scratchpad show";
+          criteria = {
+            app_id = "floating_term";
           };
         }
       ];
