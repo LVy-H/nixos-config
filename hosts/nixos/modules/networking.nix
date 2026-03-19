@@ -8,17 +8,22 @@
   ];
   networking.nftables.enable = true;
 
-  # Don't wait for network to be online at boot (speeds up startup significantly)
   systemd.services.NetworkManager-wait-online.enable = false;
 
   networking.firewall = {
     enable = true;
-    trustedInterfaces = [ "docker0" "incusbr0" "virbr0" ];
-    allowedTCPPorts = [ 
+    trustedInterfaces = [
+      "docker0"
+      "incusbr0"
+      "virbr0"
+      "virbr1"
+      "virbr2"
+    ];
+    allowedTCPPorts = [
       57621 # Spotify Connect
     ];
-    allowedUDPPorts = [ 
-      5353  # mDNS / Spotify Discovery
+    allowedUDPPorts = [
+      5353 # mDNS / Spotify Discovery
     ];
   };
 
