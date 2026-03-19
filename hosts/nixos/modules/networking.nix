@@ -35,6 +35,11 @@
   };
 
   networking.extraHosts = "10.171.242.4 ceph1";
+  services.zerotierone = {
+    enable = true;
+    port = 9993;
+    joinNetworks = [ "f3797ba7a853cd46" ];
+  };
 
   # Network tools
   environment.systemPackages = with pkgs; [
