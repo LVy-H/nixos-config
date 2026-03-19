@@ -75,16 +75,6 @@
         };
       };
 
-      lorem-nvim = {
-        enable = true;
-        settings = {
-          sentence_length = {
-            w_per_sentence = 15;
-          };
-          comma_chance = 0.2;
-        };
-      };
-
       treesitter = {
         enable = true;
         highlight.enable = true;
@@ -307,12 +297,7 @@
         action = "<cmd>TodoTelescope<CR>";
         options.desc = "Find TODOs";
       }
-      {
-        mode = "n";
-        key = "<leader>li";
-        action = "<cmd>LoremIpsum paragraphs 1<CR>";
-        options.desc = "Insert Lorem Ipsum";
-      }
+
       # Buffer navigation
       {
         mode = "n";
