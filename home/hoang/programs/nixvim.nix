@@ -261,6 +261,13 @@
     # Keymaps (Space as leader)
     globals.mapleader = " ";
     keymaps = [
+
+      {
+        mode = "n";
+        key = "<leader>gg";
+        action = "<cmd>LazyGit<CR>";
+        options.desc = "Toggle LazyGit";
+      }
       {
         mode = "n";
         key = "<leader>e";
