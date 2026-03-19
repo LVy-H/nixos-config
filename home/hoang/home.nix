@@ -67,6 +67,7 @@
     # Utils
     playerctl
     antigravity-fhs
+    typst
     libnotify
     wev
     brightnessctl
