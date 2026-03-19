@@ -49,9 +49,11 @@
     cloudflare-warp
     bluez
     bluez-tools
+    cloudflared
   ];
 
   services.cloudflare-warp.enable = true;
+  services.tailscale.enable = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
