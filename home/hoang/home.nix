@@ -63,6 +63,7 @@
     obsidian
     pavucontrol
     wpsoffice
+    gitkraken
 
     # Utils
     playerctl
