@@ -53,6 +53,7 @@
     vim
     nh # Nix Helper
     gcc
+    vagrant
   ];
 
   # Power Management
@@ -69,4 +70,3 @@
     binfmt = true;
   };
 }
-
