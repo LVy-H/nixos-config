@@ -8,6 +8,8 @@
   ];
   networking.nftables.enable = true;
 
+  services.hardware.bolt.enable = true;
+
   systemd.services.NetworkManager-wait-online.enable = false;
 
   networking.firewall = {
