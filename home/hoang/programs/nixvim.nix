@@ -97,8 +97,12 @@
             go = [ "gofmt" ];
             bash = [ "shfmt" ];
             "_" = [ "trim_whitespace" ];
+            rust = [ "rustfmt" ];
           };
         };
+      };
+      rustaceanvim = {
+        enable = true;
       };
 
       lsp = {
@@ -111,6 +115,7 @@
           clangd.enable = true;
           basedpyright.enable = true;
           ruff.enable = true;
+
         };
         keymaps = {
           silent = true;
