@@ -9,8 +9,14 @@
 
   fileSystems."/mnt/Data" = {
     device = "/dev/disk/by-uuid/08EF8110170932EF";
-    fsType = "ntfs3";
-    options = [ "rw" "prealloc" "uid=1000" "gid=100" "nofail" "x-systemd.automount" "x-systemd.idle-timeout=600" ];
+    fsType = "ntfs-3g";
+    options = [
+      "rw"
+      "prealloc"
+      "uid=1000"
+      "gid=100"
+      "nofail"
+    ];
   };
 
   # Performance Optimizations
